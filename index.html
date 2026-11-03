@@ -765,10 +765,10 @@
                 <span data-i18n="sec_works">SELECTED ENGINEERING WORKS (CLICK ROW TO INSPECT)</span>
             </div>
             <div class="filter-row mono">
-                <button class="flt-link active" id="flt-all" onclick="filterWorks('all')" data-i18n="flt_all">All [6]</button>
+                <button class="flt-link active" id="flt-all" onclick="filterWorks('all')" data-i18n="flt_all">All [5]</button>
                 <button class="flt-link" id="flt-mobile" onclick="filterWorks('mobile')">Mobile</button>
                 <button class="flt-link" id="flt-ai" onclick="filterWorks('ai')">AI / Python</button>
-                <button class="flt-link" id="flt-game" onclick="filterWorks('game')">C++ / Games / Java</button>
+                <button class="flt-link" id="flt-game" onclick="filterWorks('game')">UE5 / Unity</button>
             </div>
         </div>
 
@@ -859,19 +859,19 @@
                     <span class="proj-idx mono">04</span>
                     <div class="proj-title-wrap">
                         <span class="proj-title">Tall Enough</span>
-                        <span class="proj-tag mono" data-i18n="p4_tag">— Co-op Multiplayer RTS &amp; Island Management</span>
+                        <span class="proj-tag mono" data-i18n="p4_tag">— Co-op Multiplayer RTS Extension (UE 5.3)</span>
                     </div>
                     <div class="proj-meta mono">
-                        <span>UE 5.3 / C++</span>
+                        <span>UE 5.3 / Blueprints</span>
                         <span class="proj-toggle-icon">+</span>
                     </div>
                 </div>
                 <div class="proj-drawer">
                     <p class="proj-desc" data-i18n="p4_desc">
-                        Two-player cooperative real-time strategy game built on Unreal Engine 5.3 with full Steam Listen-Server and Dedicated-Server replication. Implemented procedural seed-based island generation, AI Behavior Trees, blacksmith upgrade mechanics, speed controls, and UI localization.
+                        Extended Unreal Engine 5.3's Cropout multiplayer architecture in a 2-person team. Implemented an interactive blacksmith upgrade system, game-speed acceleration controls, end-game UI screens (UI_EndGame), localization, and animation refinements.
                     </p>
                     <div class="proj-footer mono">
-                        <span class="stack-list">C++ · Unreal Engine 5.3 · Blueprints · Steam SDK Networking · AI Behavior Trees</span>
+                        <span class="stack-list">Unreal Engine 5.3 · Blueprints &amp; C++ · Steam SDK · UI &amp; Gameplay Systems</span>
                         <div class="proj-links">
                             <a href="https://github.com/Samrili/Tall_Enough" target="_blank" class="ext-link">Source Code <span class="arrow-ic">↗</span></a>
                         </div>
@@ -898,32 +898,6 @@
                     </p>
                     <div class="proj-footer mono">
                         <span class="stack-list">Unity · C# · 2D Platformer Physics · 48-Hour Game Jam</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- 06: ProjectE-Integration -->
-            <article class="proj-item" data-cat="game">
-                <div class="proj-summary" onclick="toggleProj(this)">
-                    <span class="proj-idx mono">06</span>
-                    <div class="proj-title-wrap">
-                        <span class="proj-title">ProjectE-Integration</span>
-                        <span class="proj-tag mono" data-i18n="p6_tag">— Open-Source Java Mod Compatibility</span>
-                    </div>
-                    <div class="proj-meta mono">
-                        <span>Java / Gradle</span>
-                        <span class="proj-toggle-icon">+</span>
-                    </div>
-                </div>
-                <div class="proj-drawer">
-                    <p class="proj-desc" data-i18n="p6_desc">
-                        Debugged cross-mod recipe conversion mappings in a ~300KB open-source Java repository, resolving broken compatibility hooks while migrating toward Minecraft 1.21.x.
-                    </p>
-                    <div class="proj-footer mono">
-                        <span class="stack-list">Java · Gradle · NeoForge · Open-Source Debugging</span>
-                        <div class="proj-links">
-                            <a href="https://github.com/Samrili/ProjectE-Integration" target="_blank" class="ext-link">Repository <span class="arrow-ic">↗</span></a>
-                        </div>
                     </div>
                 </div>
             </article>
@@ -1115,19 +1089,17 @@
             hero_bio: "I am a final-year Computer Engineering student currently based in Poland via Erasmus+. Most of my time goes into building cross-platform mobile applications with <strong>Flutter &amp; Firebase</strong>, writing local video-to-video diffusion tooling in <strong>Python (PyTorch, ComfyUI, ControlNet)</strong>, and shipping indie games under my studio <strong>YOM Games</strong>.",
             visa_strip: "Valid Poland/EU Long-Term Student Visa (Type D, under 26 status) — legally eligible for full-time & part-time remote or hybrid engineering roles.",
             sec_works: "SELECTED ENGINEERING WORKS (CLICK ROW TO INSPECT)",
-            flt_all: "All [6]",
+            flt_all: "All [5]",
             p1_tag: "— Local Video-to-Video Diffusion & Canvas Masking",
             p1_desc: "Turnkey local generative AI suite pairing a ComfyUI backend (AnimateDiff, ControlNet Lineart/Depth, ToonYou) with a custom bilingual web interface (RingPulse AI Studio). Built an HTML5 Canvas brush/rectangle region-protection masking tool to preserve faces and logos during inference, plus a hardware-aware launcher (smart_launcher.py) that reads GPU VRAM capacity (4GB–24GB+) and sets memory flags automatically to prevent CUDA Out-Of-Memory crashes.",
             p2_tag: "— Role-Based Legal Consultation Mobile Platform",
             p2_desc: "Cross-platform mobile application built with Flutter and Provider state management featuring dual role flows (Lawyer & Client). Includes city and specialty search across 81 provinces, real-time 1-on-1 chat backed by Cloud Firestore and custom security rules (firestore.rules), consultation package management, case tracking, Google Sign-In, and FCM push notifications.",
             p3_tag: "— Commercial Mobile Game on Google Play",
             p3_desc: "Designed, programmed, and shipped to production on the Google Play Store (com.yomgames.rhythmbox) under my independent studio YOM Games. Features a custom audio-rhythm synchronization engine in Flutter, cloud player persistence via Firebase, and a bilingual studio web platform (yomgames.com.tr).",
-            p4_tag: "— Co-op Multiplayer RTS & Island Management",
-            p4_desc: "Two-player cooperative real-time strategy game built on Unreal Engine 5.3 with full Steam Listen-Server and Dedicated-Server replication. Implemented procedural seed-based island generation, AI Behavior Trees, blacksmith upgrade mechanics, speed controls, and UI localization.",
+            p4_tag: "— Co-op Multiplayer RTS Extension (UE 5.3)",
+            p4_desc: "Extended Unreal Engine 5.3's Cropout multiplayer architecture in a 2-person team. Implemented an interactive blacksmith upgrade system, game-speed acceleration controls, end-game UI screens (UI_EndGame), localization, and animation refinements.",
             p5_tag: "— 5th Place @ 2026 Karadeniz Game Jam",
             p5_desc: "Built a complete 2D 1-bit platformer from scratch within 48 hours in a 2-person team using Unity and C#, finishing 5th overall at the 2026 Karadeniz Game Jam.",
-            p6_tag: "— Open-Source Java Mod Compatibility",
-            p6_desc: "Debugged cross-mod recipe conversion mappings in a ~300KB open-source Java repository, resolving broken compatibility hooks while migrating toward Minecraft 1.21.x.",
             sec_exp: "EXPERIENCE & ACADEMIC TIMELINE",
             edu1_role: "B.Sc. Computer Engineering (Erasmus+ Exchange)",
             edu1_desc: "Final-year (4th-year) undergraduate exchange student. Completing senior computer engineering coursework in English.",
@@ -1152,19 +1124,17 @@
             hero_bio: "Eğitimime Erasmus+ kapsamında Polonya'daki WSB University bünyesinde devam eden 4. sınıf Bilgisayar Mühendisliği öğrencisiyim. Zamanımın çoğunu <strong>Flutter &amp; Firebase</strong> ile çapraz platform mobil uygulamalar geliştirmeye, <strong>Python (PyTorch, ComfyUI, ControlNet)</strong> ile yerel video-anime difüzyon araçları yazmaya ve kurucusu olduğum <strong>YOM Games</strong> çatısı altında oyun üretmeye ayırıyorum.",
             visa_strip: "Uzun Dönem Polonya/AB Öğrenci Vizesi (D Tipi, 26 yaş altı öğrenci statüsü) — tam zamanlı ve yarı zamanlı uzaktan (remote) veya hibrit pozisyonlarda yasal çalışma iznine sahip.",
             sec_works: "SEÇİLİ MÜHENDİSLİK ÇALIŞMALARI (DETAY İÇİN SATIRA TIKLAYIN)",
-            flt_all: "Tümü [6]",
+            flt_all: "Tümü [5]",
             p1_tag: "— Yerel Video-to-Video Difüzyon & Canvas Maskeleme",
             p1_desc: "ComfyUI arka ucu (AnimateDiff, ControlNet Lineart/Depth, ToonYou) ile özel geliştirilen çift dilli RingPulse AI Studio web arayüzünü birleştiren yerel üretken yapay zeka stüdyosu. Yüz ve logoları difüzyon bozulmasından koruyan HTML5 Canvas bölge maskeleme aracını ve GPU VRAM kapasitesini (4GB–24GB+) algılayarak CUDA OOM çökmelerini önleyen smart_launcher.py modülünü içerir.",
             p2_tag: "— Rol Bazlı Hukuki Danışmanlık Mobil Platformu",
             p2_desc: "Avukat ve Müvekkil olmak üzere iki ayrı rol akışına sahip, Flutter ve Provider durum yönetimiyle geliştirilmiş çapraz platform mobil uygulama. 81 il/uzmanlık filtreleme, Cloud Firestore ve özel güvenlik kuralları (firestore.rules) üzerinde gerçek zamanlı mesajlaşma, danışmanlık paketi yönetimi, vaka takibi ve FCM bildirimlerini içerir.",
             p3_tag: "— Google Play Store'da Yayınlanan Mobil Oyun",
             p3_desc: "Bağımsız stüdyom YOM Games çatısı altında Flutter ve Firebase kullanarak geliştirdiğim ve Google Play Store'da (com.yomgames.rhythmbox) yayınladığım mobil ritim oyunu. Özel ses-ritim senkronizasyon motoru ve bulut veri yönetimine sahiptir.",
-            p4_tag: "— Eşli Çok Oyunculu Strateji & Ada Yönetimi",
-            p4_desc: "Unreal Engine 5.3 üzerinde Steam Listen-Server ve Dedicated-Server ağ replikasyonuna sahip 2 kişilik eşli (co-op) gerçek zamanlı strateji oyunu. Prosedürel ada üretimi, yapay zeka davranış ağaçları, demirci yükseltme sistemi ve lokalizasyon içerir.",
+            p4_tag: "— Çok Oyunculu Strateji Geliştirmesi (UE 5.3)",
+            p4_desc: "Unreal Engine 5.3 Cropout çok oyunculu mimarisini 2 kişilik ekiple genişleterek üzerine interaktif demirci (blacksmith) yükseltme sistemi, oyun hızı kontrolü, oyun sonu ekranı (UI_EndGame), lokalizasyon ve animasyon düzenlemeleri geliştirdik.",
             p5_tag: "— 2026 Karadeniz Game Jam 5.'lik Derecesi",
             p5_desc: "Unity ve C# kullanarak 2 kişilik ekiple 48 saatlik süre kısıtı içinde sıfırdan geliştirdiğimiz ve 2026 Karadeniz Game Jam'de 5. sırada yer alan 2D 1-Bit platform oyunu.",
-            p6_tag: "— Açık Kaynak Java Mod Uyumluluk Geliştirmesi",
-            p6_desc: "~300KB büyüklüğündeki açık kaynaklı Java kod tabanında modlar arası EMC dönüşüm haritalaması (recipe mapping) ve Minecraft 1.21.x sürüm uyumluluk hatalarının giderilmesi.",
             sec_exp: "DENEYİM VE AKADEMİK GEÇMİŞ",
             edu1_role: "Bilgisayar Mühendisliği Lisans (Erasmus+ Değişim Programı)",
             edu1_desc: "4. sınıf (son sınıf) lisans değişim öğrencisi. Bilgisayar mühendisliği son sınıf derslerini İngilizce olarak sürdürmekteyim.",
@@ -1189,19 +1159,17 @@
             hero_bio: "Jestem studentem ostatniego (IV) roku Inżynierii Komputerowej, obecnie studiującym w Polsce w ramach programu Erasmus+. Większość czasu poświęcam na budowanie aplikacji mobilnych we <strong>Flutterze i Firebase</strong>, tworzenie lokalnych narzędzi dyfuzyjnych wideo w <strong>Pythonie (PyTorch, ComfyUI, ControlNet)</strong> oraz wydawanie gier pod szyldem własnego studia <strong>YOM Games</strong>.",
             visa_strip: "Ważna długoterminowa wiza studencka typu D (status studenta <26 lat) — pełne prawo do pracy zdalnej lub hybrydowej w pełnym i niepełnym wymiarze godzin.",
             sec_works: "WYBRANE PROJEKTY INŻYNIERSKIE (KLIKNIJ WIERSZ, ABY ROZWINĄĆ)",
-            flt_all: "Wszystkie [6]",
+            flt_all: "Wszystkie [5]",
             p1_tag: "— Lokalna Dyfuzja Video-to-Video i Maskowanie Canvas",
             p1_desc: "Lokalne środowisko generatywnej AI łączące backend ComfyUI (AnimateDiff, ControlNet Lineart/Depth, ToonYou) z dwujęzycznym interfejsem RingPulse AI Studio. Zawiera narzędzie maskowania obszarów w HTML5 Canvas oraz skrypt smart_launcher.py automatycznie wykrywający pamięć VRAM GPU (4GB–24GB+).",
             p2_tag: "— Mobilna Platforma Konsultacji Prawnych",
             p2_desc: "Wieloplatformowa aplikacja mobilna we Flutterze z zarządzaniem stanem Provider i podziałem na role (Prawnik i Klient). Wyszukiwanie według miast i specjalizacji, czat w czasie rzeczywistym (Cloud Firestore + firestore.rules), zarządzanie pakietami oraz powiadomienia FCM.",
             p3_tag: "— Gra Mobilna Opublikowana w Google Play",
             p3_desc: "Zaprojektowana i wydana w Google Play Store (com.yomgames.rhythmbox) pod szyldem mojego studia YOM Games. Silnik synchronizacji audio-rytmu we Flutterze, zapis danych w chmurze Firebase oraz strona studia (yomgames.com.tr).",
-            p4_tag: "— Wieloosobowa Gra Strategiczna Co-op RTS",
-            p4_desc: "Dwuosobowa gra strategiczna na silniku Unreal Engine 5.3 z replikacją sieciową Steam (Listen-Server i Dedicated-Server), proceduralnym generowaniem wysp, drzewami zachowań AI i systemem ulepszeń kuźni.",
+            p4_tag: "— Rozbudowa Wieloosobowej Gry Strategicznej (UE 5.3)",
+            p4_desc: "Rozbudowa wieloosobowej architektury Cropout na silniku Unreal Engine 5.3 w dwuosobowym zespole: autorski system ulepszeń kuźni (blacksmith), kontrola prędkości gry, ekran końcowy (UI_EndGame) oraz lokalizacja.",
             p5_tag: "— 5. Miejsce @ 2026 Karadeniz Game Jam",
             p5_desc: "Kompletna gra platformowa 2D 1-Bit stworzona od podstaw w 48 godzin w dwuosobowym zespole (Unity / C#), nagrodzona 5. miejscem w klasyfikacji generalnej.",
-            p6_tag: "— Kompatybilność Open-Source w Javie",
-            p6_desc: "Analiza i naprawa mapowania receptur EMC w otwartoźródłowym repozytorium Java (~300KB kodu) podczas aktualizacji kompatybilności do Minecraft 1.21.x.",
             sec_exp: "DOŚWIADCZENIE I EDUKACJA",
             edu1_role: "Inżynieria Komputerowa B.Sc. (Wymiana Erasmus+)",
             edu1_desc: "Student ostatniego (IV) roku studiów inżynierskich w języku angielskim.",

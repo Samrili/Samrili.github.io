@@ -1,606 +1,1261 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammed Yusuf Bayazıtoğlu | Mobile (Flutter) & AI Software Engineer</title>
-    <meta name="description" content="Portfolio of Muhammed Yusuf Bayazıtoğlu — Final-Year Computer Engineering Student (Erasmus+ @ WSB University, Poland), Mobile (Flutter) & Applied AI Developer, Founder of YOM Games.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Muhammed Yusuf Bayazıtoğlu — Software & Applied AI</title>
+    <meta name="description" content="Muhammed Yusuf Bayazıtoğlu — Final-Year Computer Engineering Student (Erasmus+ @ WSB University, Poland). Mobile (Flutter) & Applied AI Software Developer.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #090d16;
-            color: #f1f5f9;
+        :root {
+            --bg: #F6F4EE;
+            --bg-elevated: #EFECE4;
+            --ink: #141413;
+            --ink-muted: #575652;
+            --ink-faint: #8C8A82;
+            --line: #DCD9CF;
+            --accent: #D64527;
+            --accent-soft: rgba(214, 69, 39, 0.1);
+            --status: #1F7A4C;
+            --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
         }
+
+        [data-theme="dark"] {
+            --bg: #111110;
+            --bg-elevated: #1A1A18;
+            --ink: #ECEAE2;
+            --ink-muted: #9E9C94;
+            --ink-faint: #63625C;
+            --line: #282825;
+            --accent: #E86346;
+            --accent-soft: rgba(232, 99, 70, 0.14);
+            --status: #3DD68C;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--ink);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.35s var(--ease-out), color 0.35s var(--ease-out);
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* Subtle paper grain overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.032;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
         .mono {
             font-family: 'JetBrains Mono', monospace;
+            font-feature-settings: "liga" 0, "zero" 1;
         }
-        .glass {
-            background: rgba(15, 23, 42, 0.78);
-            backdrop-filter: blur(14px);
-            border: 1px solid rgba(148, 163, 184, 0.12);
+
+        .serif {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-weight: 400;
         }
-        .card-hover {
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+        a {
+            color: inherit;
+            text-decoration: none;
         }
-        .card-hover:hover {
-            transform: translateY(-4px);
-            border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 16px 36px -10px rgba(14, 165, 233, 0.15);
+
+        /* Main blueprint frame */
+        .frame {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 24px;
+            border-left: 1px solid var(--line);
+            border-right: 1px solid var(--line);
+            min-height: 100vh;
+            position: relative;
         }
-        .grad-text {
-            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 55%, #c084fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        @media (max-width: 860px) {
+            .frame {
+                border-left: none;
+                border-right: none;
+                padding: 0 20px;
+            }
         }
-        .grid-bg {
-            background-image: radial-gradient(rgba(148, 163, 184, 0.09) 1px, transparent 1px);
-            background-size: 28px 28px;
+
+        /* Top utility bar */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 12px;
+            color: var(--ink-muted);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--status);
+            display: inline-block;
+            position: relative;
+        }
+
+        .live-dot::after {
+            content: "";
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            border: 1px solid var(--status);
+            animation: ping 2.4s infinite var(--ease-out);
+        }
+
+        @keyframes ping {
+            0% { transform: scale(0.8); opacity: 0.9; }
+            100% { transform: scale(2.1); opacity: 0; }
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ctrl-btn {
+            background: transparent;
+            border: 1px solid var(--line);
+            color: var(--ink-muted);
+            padding: 4px 8px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s var(--ease-out);
+            border-radius: 3px;
+        }
+
+        .ctrl-btn:hover {
+            border-color: var(--ink);
+            color: var(--ink);
+        }
+
+        .ctrl-btn.active {
+            background: var(--ink);
+            color: var(--bg);
+            border-color: var(--ink);
+        }
+
+        /* Crosshair section divider */
+        .divider {
+            position: relative;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "+";
+            position: absolute;
+            bottom: -9px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--ink-faint);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .divider::before { left: -28px; }
+        .divider::after { right: -28px; }
+
+        @media (max-width: 860px) {
+            .divider::before, .divider::after { display: none; }
+        }
+
+        /* Staggered reveal on load */
+        .reveal {
+            opacity: 0;
+            transform: translateY(12px);
+            animation: rise 0.65s var(--ease-out) forwards;
+        }
+        .d-1 { animation-delay: 0.05s; }
+        .d-2 { animation-delay: 0.14s; }
+        .d-3 { animation-delay: 0.22s; }
+        .d-4 { animation-delay: 0.30s; }
+
+        @keyframes rise {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero section */
+        .hero {
+            padding: 56px 0 44px;
+        }
+
+        .hero-kicker {
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-name {
+            font-size: clamp(38px, 6.2vw, 58px);
+            line-height: 1.04;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            color: var(--ink);
+        }
+
+        .hero-name em {
+            font-style: italic;
+            color: var(--ink-muted);
+        }
+
+        .hero-bio {
+            font-size: 16px;
+            line-height: 1.68;
+            color: var(--ink-muted);
+            max-width: 660px;
+            margin-bottom: 28px;
+        }
+
+        .hero-bio strong {
+            color: var(--ink);
+            font-weight: 500;
+            border-bottom: 1px dotted var(--ink-faint);
+        }
+
+        /* Visa & status strip */
+        .status-note {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 10px;
+            padding: 10px 14px;
+            background: var(--bg-elevated);
+            border-left: 2px solid var(--accent);
+            font-size: 13px;
+            color: var(--ink);
+            margin-bottom: 30px;
+            max-width: 660px;
+        }
+
+        /* Action links row */
+        .actions-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cv-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border: 1px solid var(--ink);
+            font-size: 12.5px;
+            font-weight: 500;
+            transition: all 0.22s var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-pill.primary {
+            background: var(--ink);
+            color: var(--bg);
+        }
+
+        .cv-pill.primary:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .cv-pill.secondary {
+            background: transparent;
+            color: var(--ink);
+            border-color: var(--line);
+        }
+
+        .cv-pill.secondary:hover {
+            border-color: var(--ink);
+            background: var(--bg-elevated);
+            transform: translateY(-1px);
+        }
+
+        .arrow-ic {
+            display: inline-block;
+            transition: transform 0.22s var(--ease-out);
+            font-size: 11px;
+        }
+
+        .cv-pill:hover .arrow-ic,
+        .ext-link:hover .arrow-ic {
+            transform: translate(2px, -2px);
+        }
+
+        /* Section headers */
+        .sec-block {
+            padding: 40px 0;
+        }
+
+        .sec-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 22px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .sec-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sec-label span.num {
+            color: var(--accent);
+        }
+
+        /* Filter tabs */
+        .filter-row {
+            display: flex;
+            gap: 14px;
+            font-size: 12px;
+        }
+
+        .flt-link {
+            background: none;
+            border: none;
+            color: var(--ink-faint);
+            cursor: pointer;
+            padding: 2px 0;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s var(--ease-out);
+        }
+
+        .flt-link:hover {
+            color: var(--ink);
+        }
+
+        .flt-link.active {
+            color: var(--ink);
+            border-bottom-color: var(--accent);
+        }
+
+        /* Interactive Project Ledger (Spotlight dimming on hover) */
+        .project-ledger {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--line);
+        }
+
+        .project-ledger:hover .proj-item:not(:hover) {
+            opacity: 0.42;
+        }
+
+        .proj-item {
+            border-bottom: 1px solid var(--line);
+            transition: opacity 0.28s var(--ease-out), background-color 0.25s var(--ease-out);
+        }
+
+        .proj-summary {
+            display: grid;
+            grid-template-columns: 38px 1fr auto;
+            align-items: baseline;
+            padding: 18px 8px;
+            cursor: pointer;
+            transition: transform 0.28s var(--ease-out);
+            gap: 12px;
+        }
+
+        .proj-item:hover .proj-summary {
+            transform: translateX(6px);
+        }
+
+        .proj-idx {
+            font-size: 12px;
+            color: var(--ink-faint);
+            transition: color 0.2s;
+        }
+
+        .proj-item:hover .proj-idx {
+            color: var(--accent);
+        }
+
+        .proj-title-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .proj-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--ink);
+            letter-spacing: -0.01em;
+        }
+
+        .proj-tag {
+            font-size: 12px;
+            color: var(--ink-muted);
+        }
+
+        .proj-meta {
+            font-size: 12px;
+            color: var(--ink-faint);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        .proj-toggle-icon {
+            display: inline-block;
+            transition: transform 0.3s var(--ease-out);
+            font-size: 13px;
+            color: var(--ink-muted);
+        }
+
+        .proj-item.open .proj-toggle-icon {
+            transform: rotate(45deg);
+            color: var(--accent);
+        }
+
+        /* Expandable drawer */
+        .proj-drawer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.38s var(--ease-out), padding 0.38s var(--ease-out);
+            padding: 0 8px 0 50px;
+        }
+
+        .proj-item.open .proj-drawer {
+            max-height: 360px;
+            padding: 0 8px 20px 50px;
+        }
+
+        @media (max-width: 640px) {
+            .proj-summary {
+                grid-template-columns: 28px 1fr auto;
+            }
+            .proj-drawer, .proj-item.open .proj-drawer {
+                padding-left: 36px;
+            }
+            .proj-tag {
+                display: none;
+            }
+        }
+
+        .proj-desc {
+            font-size: 14px;
+            color: var(--ink-muted);
+            line-height: 1.65;
+            margin-bottom: 12px;
+            max-width: 620px;
+        }
+
+        .proj-footer {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            font-size: 12px;
+        }
+
+        .stack-list {
+            color: var(--ink-faint);
+        }
+
+        .proj-links {
+            display: flex;
+            gap: 14px;
+        }
+
+        .ext-link {
+            color: var(--ink);
+            font-weight: 500;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 1px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .ext-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Experience & Education 2-Column Ledger */
+        .timeline-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .tl-row {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 20px;
+            align-items: baseline;
+        }
+
+        @media (max-width: 640px) {
+            .tl-row {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+        }
+
+        .tl-date {
+            font-size: 12px;
+            color: var(--ink-faint);
+        }
+
+        .tl-role {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 2px;
+        }
+
+        .tl-org {
+            font-size: 13px;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .tl-text {
+            font-size: 13.8px;
+            color: var(--ink-muted);
+            line-height: 1.6;
+        }
+
+        /* Technical Index Table */
+        .spec-table {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            border-top: 1px solid var(--line);
+        }
+
+        .spec-row {
+            display: contents;
+        }
+
+        .spec-key, .spec-val {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 13.5px;
+        }
+
+        .spec-key {
+            color: var(--ink-faint);
+            font-size: 12px;
+        }
+
+        .spec-val {
+            color: var(--ink);
+        }
+
+        @media (max-width: 640px) {
+            .spec-table {
+                grid-template-columns: 1fr;
+            }
+            .spec-key {
+                border-bottom: none;
+                padding-bottom: 2px;
+            }
+            .spec-val {
+                padding-top: 0;
+            }
+        }
+
+        /* Footer & Keyboard bar */
+        .footer {
+            padding: 36px 0 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .copy-email-btn {
+            background: none;
+            border: none;
+            color: var(--ink);
+            font-size: 18px;
+            cursor: pointer;
+            border-bottom: 1px dashed var(--ink-faint);
+            padding-bottom: 2px;
+            transition: color 0.2s, border-color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .copy-email-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .kbd-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            font-size: 11.5px;
+            color: var(--ink-faint);
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+        }
+
+        kbd {
+            display: inline-block;
+            padding: 1px 5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            border: 1px solid var(--line);
+            border-radius: 3px;
+            background: var(--bg-elevated);
+            color: var(--ink-muted);
+        }
+
+        /* Toast notification */
+        #toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--ink);
+            color: var(--bg);
+            padding: 10px 16px;
+            font-size: 12px;
+            border-radius: 4px;
+            transform: translateY(80px);
+            opacity: 0;
+            transition: all 0.3s var(--ease-out);
+            z-index: 200;
+            pointer-events: none;
+        }
+
+        #toast.show {
+            transform: translateY(0);
+            opacity: 1;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-sky-500 selection:text-slate-950 grid-bg min-h-screen flex flex-col">
+<body>
 
-    <!-- Navbar -->
-    <nav class="fixed top-0 w-full z-50 glass border-b border-slate-800/80">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2.5 group">
-                <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center font-bold text-white shadow-md shadow-sky-500/20">
-                    MYB
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-bold text-sm tracking-tight text-white group-hover:text-sky-400 transition-colors">M. Yusuf Bayazıtoğlu</span>
-                    <span class="text-[11px] mono text-slate-400">@Samrili</span>
-                </div>
-            </a>
-
-            <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
-                <a href="#about" class="hover:text-sky-400 transition-colors" data-i18n="nav_about">About</a>
-                <a href="#skills" class="hover:text-sky-400 transition-colors" data-i18n="nav_skills">Skills</a>
-                <a href="#projects" class="hover:text-sky-400 transition-colors" data-i18n="nav_projects">Projects</a>
-                <a href="#experience" class="hover:text-sky-400 transition-colors" data-i18n="nav_exp">Experience</a>
-                <a href="#contact" class="hover:text-sky-400 transition-colors" data-i18n="nav_contact">Contact</a>
-            </div>
-
-            <div class="flex items-center gap-2">
-                <div class="flex items-center bg-slate-900/90 border border-slate-700/80 rounded-lg p-1 text-xs font-semibold">
-                    <button onclick="setLang('en')" id="btn-en" class="px-2.5 py-1 rounded-md transition-all bg-sky-500 text-slate-950">EN</button>
-                    <button onclick="setLang('tr')" id="btn-tr" class="px-2.5 py-1 rounded-md transition-all text-slate-400 hover:text-white">TR</button>
-                    <button onclick="setLang('pl')" id="btn-pl" class="px-2.5 py-1 rounded-md transition-all text-slate-400 hover:text-white">PL</button>
-                </div>
-            </div>
+<div class="frame">
+    <!-- Top Utility Bar -->
+    <nav class="topbar mono reveal d-1">
+        <div class="topbar-left">
+            <span class="live-dot" title="Available for Remote Work"></span>
+            <span>SOSNOWIEC, PL (50.28°N, 19.10°E)</span>
+            <span>•</span>
+            <span id="clock">--:--:-- CET</span>
+        </div>
+        <div class="controls">
+            <button class="ctrl-btn active" id="btn-en" onclick="setLang('en')" title="Shortcut: 1">EN</button>
+            <button class="ctrl-btn" id="btn-tr" onclick="setLang('tr')" title="Shortcut: 2">TR</button>
+            <button class="ctrl-btn" id="btn-pl" onclick="setLang('pl')" title="Shortcut: 3">PL</button>
+            <span style="margin: 0 2px; color: var(--line);">|</span>
+            <button class="ctrl-btn" id="theme-btn" onclick="toggleTheme()" title="Shortcut: T">
+                <span id="theme-label">DARK [T]</span>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header id="about" class="pt-32 pb-16 sm:pt-36 sm:pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-        <div class="flex flex-col items-start max-w-4xl">
-            <!-- Status Pill -->
-            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-medium mb-6">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span data-i18n="hero_badge">Sosnowiec, Poland (Erasmus+) • Valid EU/PL Long-Term Visa: Eligible for Full-Time & Part-Time Remote Work</span>
-            </div>
+    <!-- Hero -->
+    <header class="hero divider reveal d-2">
+        <div class="hero-kicker mono">
+            <span data-i18n="kicker">COMPUTER ENGINEERING (4TH YEAR / SENIOR) — ERASMUS+ @ WSB UNIVERSITY</span>
+        </div>
 
-            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.12] mb-5">
-                <span data-i18n="hero_greeting">Hi, I'm</span> <span class="grad-text">Muhammed Yusuf Bayazıtoğlu</span>
-            </h1>
+        <h1 class="hero-name serif">
+            Muhammed Yusuf Bayazıtoğlu <br>
+            <em data-i18n="hero_sub">builds mobile software &amp; local AI systems.</em>
+        </h1>
 
-            <p class="text-lg sm:text-xl text-slate-300 font-medium leading-relaxed mb-4" data-i18n="hero_role">
-                Final-Year (4th-Year) Computer Engineering Student • Mobile (Flutter) & Applied AI Software Developer
-            </p>
+        <p class="hero-bio" data-i18n="hero_bio">
+            I am a final-year Computer Engineering student currently based in Poland via Erasmus+. Most of my time goes into building cross-platform mobile applications with <strong>Flutter &amp; Firebase</strong>, writing local video-to-video diffusion tooling in <strong>Python (PyTorch, ComfyUI, ControlNet)</strong>, and shipping indie games under my studio <strong>YOM Games</strong>.
+        </p>
 
-            <p class="text-sm sm:text-base text-slate-400 leading-relaxed mb-8 max-w-3xl" data-i18n="hero_desc">
-                Currently studying Computer Engineering at WSB University (Poland) via Erasmus+. I build production-ready cross-platform mobile apps with Flutter & Firebase, engineer local generative AI video pipelines in Python (PyTorch, ComfyUI, ControlNet, AnimateDiff), and develop multiplayer systems in Unreal Engine 5 & C++. Founder of YOM Games with commercial software shipped on Google Play Store.
-            </p>
+        <div class="status-note">
+            <span class="mono" style="color: var(--accent); font-weight: 600;">[STATUS]</span>
+            <span data-i18n="visa_strip">Valid Poland/EU Long-Term Student Visa (Type D, under 26 status) — legally eligible for full-time &amp; part-time remote or hybrid engineering roles.</span>
+        </div>
 
-            <!-- Action Buttons & CV Downloads -->
-            <div class="flex flex-wrap items-center gap-3.5 mb-8">
-                <a href="cv/Muhammed_Yusuf_Bayazitoglu_CV_EN.pdf" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm shadow-lg shadow-sky-500/20 transition-all">
-                    <i class="fa-solid fa-file-arrow-down"></i>
-                    <span>CV (English PDF)</span>
-                </a>
-                <a href="cv/Muhammed_Yusuf_Bayazitoglu_CV_TR.pdf" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-100 border border-slate-700 font-semibold text-sm transition-all">
-                    <i class="fa-solid fa-file-pdf text-sky-400"></i>
-                    <span>CV (Türkçe PDF)</span>
-                </a>
-                <a href="cv/Muhammed_Yusuf_Bayazitoglu_CV_PL.pdf" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-100 border border-slate-700 font-semibold text-sm transition-all">
-                    <i class="fa-solid fa-file-pdf text-indigo-400"></i>
-                    <span>CV (Polski PDF)</span>
-                </a>
-            </div>
-
-            <!-- Social Links -->
-            <div class="flex flex-wrap items-center gap-5 text-sm text-slate-400">
-                <a href="https://github.com/Samrili" target="_blank" class="flex items-center gap-2 hover:text-white transition-colors">
-                    <i class="fa-brands fa-github text-lg text-slate-200"></i>
-                    <span class="mono">github.com/Samrili</span>
-                </a>
-                <a href="https://linkedin.com/in/samrili" target="_blank" class="flex items-center gap-2 hover:text-white transition-colors">
-                    <i class="fa-brands fa-linkedin text-lg text-sky-400"></i>
-                    <span class="mono">linkedin.com/in/samrili</span>
-                </a>
-                <a href="https://yomgames.com.tr" target="_blank" class="flex items-center gap-2 hover:text-white transition-colors">
-                    <i class="fa-solid fa-gamepad text-lg text-indigo-400"></i>
-                    <span class="mono">yomgames.com.tr</span>
-                </a>
-                <a href="mailto:samrili.yusuf@gmail.com" class="flex items-center gap-2 hover:text-white transition-colors">
-                    <i class="fa-solid fa-envelope text-lg text-emerald-400"></i>
-                    <span class="mono">samrili.yusuf@gmail.com</span>
-                </a>
-            </div>
+        <div class="actions-bar mono">
+            <a href="cv/Muhammed_Yusuf_Bayazitoglu_CV_EN.pdf" target="_blank" class="cv-pill primary">
+                <span>CV_EN.pdf</span>
+                <span class="arrow-ic">↗</span>
+            </a>
+            <a href="cv/Muhammed_Yusuf_Bayazitoglu_CV_TR.pdf" target="_blank" class="cv-pill secondary">
+                <span>CV_TR.pdf</span>
+                <span class="arrow-ic">↗</span>
+            </a>
+            <a href="cv/Muhammed_Yusuf_Bayazitoglu_CV_PL.pdf" target="_blank" class="cv-pill secondary">
+                <span>CV_PL.pdf</span>
+                <span class="arrow-ic">↗</span>
+            </a>
+            <a href="https://github.com/Samrili" target="_blank" class="cv-pill secondary">
+                <span>github.com/Samrili</span>
+                <span class="arrow-ic">↗</span>
+            </a>
+            <a href="https://linkedin.com/in/samrili" target="_blank" class="cv-pill secondary">
+                <span>LinkedIn</span>
+                <span class="arrow-ic">↗</span>
+            </a>
         </div>
     </header>
 
-    <!-- Technical Skills Section -->
-    <section id="skills" class="py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
-        <div class="flex items-center gap-3 mb-8">
-            <h2 class="text-2xl font-bold text-white tracking-tight" data-i18n="sec_skills">Technical Stack</h2>
-            <div class="h-px bg-slate-800 flex-1"></div>
+    <!-- 01 / Selected Works (Interactive Accordion Ledger) -->
+    <section class="sec-block divider reveal d-3">
+        <div class="sec-head">
+            <div class="sec-label mono">
+                <span class="num">01</span>
+                <span>/</span>
+                <span data-i18n="sec_works">SELECTED ENGINEERING WORKS (CLICK ROW TO INSPECT)</span>
+            </div>
+            <div class="filter-row mono">
+                <button class="flt-link active" id="flt-all" onclick="filterWorks('all')" data-i18n="flt_all">All [6]</button>
+                <button class="flt-link" id="flt-mobile" onclick="filterWorks('mobile')">Mobile</button>
+                <button class="flt-link" id="flt-ai" onclick="filterWorks('ai')">AI / Python</button>
+                <button class="flt-link" id="flt-game" onclick="filterWorks('game')">C++ / Games / Java</button>
+            </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="glass rounded-2xl p-5 card-hover">
-                <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mb-4">
-                    <i class="fa-solid fa-mobile-screen-button text-lg"></i>
+        <div class="project-ledger" id="ledger">
+            <!-- 01: AnimeAI Studio -->
+            <article class="proj-item open" data-cat="ai">
+                <div class="proj-summary" onclick="toggleProj(this)">
+                    <span class="proj-idx mono">01</span>
+                    <div class="proj-title-wrap">
+                        <span class="proj-title">AnimeAI Studio</span>
+                        <span class="proj-tag mono" data-i18n="p1_tag">— Local Video-to-Video Diffusion &amp; Canvas Masking</span>
+                    </div>
+                    <div class="proj-meta mono">
+                        <span>Python / PyTorch</span>
+                        <span class="proj-toggle-icon">+</span>
+                    </div>
                 </div>
-                <h3 class="font-bold text-white mb-2 text-base" data-i18n="skill_cat_1">Mobile & Frontend</h3>
-                <div class="flex flex-wrap gap-1.5 text-xs mono text-slate-300">
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">Flutter</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">Dart</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">Provider</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">Material UI</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">HTML5 Canvas</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">Tailwind CSS</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">JavaScript</span>
+                <div class="proj-drawer">
+                    <p class="proj-desc" data-i18n="p1_desc">
+                        Turnkey local generative AI suite pairing a ComfyUI backend (AnimateDiff, ControlNet Lineart/Depth, ToonYou) with a custom bilingual web interface (RingPulse AI Studio). Built an HTML5 Canvas brush/rectangle region-protection masking tool to preserve faces and logos during inference, plus a hardware-aware launcher (smart_launcher.py) that reads GPU VRAM capacity (4GB–24GB+) and sets memory flags automatically to prevent CUDA Out-Of-Memory crashes.
+                    </p>
+                    <div class="proj-footer mono">
+                        <span class="stack-list">Python · PyTorch (CUDA) · ComfyUI · AnimateDiff · ControlNet · HTML5 Canvas</span>
+                        <div class="proj-links">
+                            <a href="https://github.com/Samrili/animeai" target="_blank" class="ext-link">Source Code <span class="arrow-ic">↗</span></a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 02: AvukatBul -->
+            <article class="proj-item" data-cat="mobile">
+                <div class="proj-summary" onclick="toggleProj(this)">
+                    <span class="proj-idx mono">02</span>
+                    <div class="proj-title-wrap">
+                        <span class="proj-title">AvukatBul</span>
+                        <span class="proj-tag mono" data-i18n="p2_tag">— Role-Based Legal Consultation Mobile Platform</span>
+                    </div>
+                    <div class="proj-meta mono">
+                        <span>Flutter / Firebase</span>
+                        <span class="proj-toggle-icon">+</span>
+                    </div>
+                </div>
+                <div class="proj-drawer">
+                    <p class="proj-desc" data-i18n="p2_desc">
+                        Cross-platform mobile application built with Flutter and Provider state management featuring dual role flows (Lawyer &amp; Client). Includes city and specialty search across 81 provinces, real-time 1-on-1 chat backed by Cloud Firestore and custom security rules (firestore.rules), consultation package management, case tracking, Google Sign-In, and FCM push notifications.
+                    </p>
+                    <div class="proj-footer mono">
+                        <span class="stack-list">Flutter · Dart · Provider · Cloud Firestore · Firebase Auth · FCM · Storage</span>
+                        <div class="proj-links">
+                            <a href="https://github.com/Samrili/AvukatBul" target="_blank" class="ext-link">Source Code <span class="arrow-ic">↗</span></a>
+                            <a href="https://github.com/Samrili/AvukatBul/blob/main/README.txt" target="_blank" class="ext-link">Architecture (.txt) <span class="arrow-ic">↗</span></a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 03: Rhythm Box (YOM Games) -->
+            <article class="proj-item" data-cat="mobile game">
+                <div class="proj-summary" onclick="toggleProj(this)">
+                    <span class="proj-idx mono">03</span>
+                    <div class="proj-title-wrap">
+                        <span class="proj-title">Rhythm Box (YOM Games)</span>
+                        <span class="proj-tag mono" data-i18n="p3_tag">— Commercial Mobile Game on Google Play</span>
+                    </div>
+                    <div class="proj-meta mono">
+                        <span>Flutter / Play Store</span>
+                        <span class="proj-toggle-icon">+</span>
+                    </div>
+                </div>
+                <div class="proj-drawer">
+                    <p class="proj-desc" data-i18n="p3_desc">
+                        Designed, programmed, and shipped to production on the Google Play Store (com.yomgames.rhythmbox) under my independent studio YOM Games. Features a custom audio-rhythm synchronization engine in Flutter, cloud player persistence via Firebase, and a bilingual studio web platform (yomgames.com.tr).
+                    </p>
+                    <div class="proj-footer mono">
+                        <span class="stack-list">Flutter · Dart · Firebase · Google Play Console · Tailwind CSS</span>
+                        <div class="proj-links">
+                            <a href="https://play.google.com/store/apps/details?id=com.yomgames.rhythmbox" target="_blank" class="ext-link">Google Play <span class="arrow-ic">↗</span></a>
+                            <a href="https://yomgames.com.tr" target="_blank" class="ext-link">yomgames.com.tr <span class="arrow-ic">↗</span></a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 04: Tall Enough -->
+            <article class="proj-item" data-cat="game">
+                <div class="proj-summary" onclick="toggleProj(this)">
+                    <span class="proj-idx mono">04</span>
+                    <div class="proj-title-wrap">
+                        <span class="proj-title">Tall Enough</span>
+                        <span class="proj-tag mono" data-i18n="p4_tag">— Co-op Multiplayer RTS &amp; Island Management</span>
+                    </div>
+                    <div class="proj-meta mono">
+                        <span>UE 5.3 / C++</span>
+                        <span class="proj-toggle-icon">+</span>
+                    </div>
+                </div>
+                <div class="proj-drawer">
+                    <p class="proj-desc" data-i18n="p4_desc">
+                        Two-player cooperative real-time strategy game built on Unreal Engine 5.3 with full Steam Listen-Server and Dedicated-Server replication. Implemented procedural seed-based island generation, AI Behavior Trees, blacksmith upgrade mechanics, speed controls, and UI localization.
+                    </p>
+                    <div class="proj-footer mono">
+                        <span class="stack-list">C++ · Unreal Engine 5.3 · Blueprints · Steam SDK Networking · AI Behavior Trees</span>
+                        <div class="proj-links">
+                            <a href="https://github.com/Samrili/Tall_Enough" target="_blank" class="ext-link">Source Code <span class="arrow-ic">↗</span></a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 05: K.A.R.M.A -->
+            <article class="proj-item" data-cat="game">
+                <div class="proj-summary" onclick="toggleProj(this)">
+                    <span class="proj-idx mono">05</span>
+                    <div class="proj-title-wrap">
+                        <span class="proj-title">K.A.R.M.A</span>
+                        <span class="proj-tag mono" data-i18n="p5_tag">— 5th Place @ 2026 Karadeniz Game Jam</span>
+                    </div>
+                    <div class="proj-meta mono">
+                        <span>Unity / C#</span>
+                        <span class="proj-toggle-icon">+</span>
+                    </div>
+                </div>
+                <div class="proj-drawer">
+                    <p class="proj-desc" data-i18n="p5_desc">
+                        Built a complete 2D 1-bit platformer from scratch within 48 hours in a 2-person team using Unity and C#, finishing 5th overall at the 2026 Karadeniz Game Jam.
+                    </p>
+                    <div class="proj-footer mono">
+                        <span class="stack-list">Unity · C# · 2D Platformer Physics · 48-Hour Game Jam</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 06: ProjectE-Integration -->
+            <article class="proj-item" data-cat="game">
+                <div class="proj-summary" onclick="toggleProj(this)">
+                    <span class="proj-idx mono">06</span>
+                    <div class="proj-title-wrap">
+                        <span class="proj-title">ProjectE-Integration</span>
+                        <span class="proj-tag mono" data-i18n="p6_tag">— Open-Source Java Mod Compatibility</span>
+                    </div>
+                    <div class="proj-meta mono">
+                        <span>Java / Gradle</span>
+                        <span class="proj-toggle-icon">+</span>
+                    </div>
+                </div>
+                <div class="proj-drawer">
+                    <p class="proj-desc" data-i18n="p6_desc">
+                        Debugged cross-mod recipe conversion mappings in a ~300KB open-source Java repository, resolving broken compatibility hooks while migrating toward Minecraft 1.21.x.
+                    </p>
+                    <div class="proj-footer mono">
+                        <span class="stack-list">Java · Gradle · NeoForge · Open-Source Debugging</span>
+                        <div class="proj-links">
+                            <a href="https://github.com/Samrili/ProjectE-Integration" target="_blank" class="ext-link">Repository <span class="arrow-ic">↗</span></a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- 02 / Experience & Education -->
+    <section class="sec-block divider reveal d-4">
+        <div class="sec-head">
+            <div class="sec-label mono">
+                <span class="num">02</span>
+                <span>/</span>
+                <span data-i18n="sec_exp">EXPERIENCE &amp; ACADEMIC TIMELINE</span>
+            </div>
+        </div>
+
+        <div class="timeline-list">
+            <div class="tl-row">
+                <div class="tl-date mono">07.2026 — PRESENT</div>
+                <div>
+                    <div class="tl-role" data-i18n="edu1_role">B.Sc. Computer Engineering (Erasmus+ Exchange)</div>
+                    <div class="tl-org mono">WSB University (Akademia WSB) · Sosnowiec, Poland</div>
+                    <div class="tl-text" data-i18n="edu1_desc">Final-year (4th-year) undergraduate exchange student. Completing senior computer engineering coursework in English.</div>
                 </div>
             </div>
 
-            <div class="glass rounded-2xl p-5 card-hover">
-                <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-4">
-                    <i class="fa-solid fa-brain text-lg"></i>
-                </div>
-                <h3 class="font-bold text-white mb-2 text-base" data-i18n="skill_cat_2">AI & Computer Vision</h3>
-                <div class="flex flex-wrap gap-1.5 text-xs mono text-slate-300">
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">Python</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">PyTorch (CUDA)</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">ComfyUI</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">AnimateDiff</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">ControlNet</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">VRAM Optimization</span>
+            <div class="tl-row">
+                <div class="tl-date mono">06.2026 — 07.2026</div>
+                <div>
+                    <div class="tl-role" data-i18n="exp1_role">Mobile Application Development Intern</div>
+                    <div class="tl-org mono">Talos Yazılım · Istanbul, Turkey</div>
+                    <div class="tl-text" data-i18n="exp1_desc">Worked on mobile UI refinements, screen transition animations, and runtime defect analysis using debugging/profiling tools across test builds.</div>
                 </div>
             </div>
 
-            <div class="glass rounded-2xl p-5 card-hover">
-                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
-                    <i class="fa-solid fa-database text-lg"></i>
-                </div>
-                <h3 class="font-bold text-white mb-2 text-base" data-i18n="skill_cat_3">Backend, Cloud & DB</h3>
-                <div class="flex flex-wrap gap-1.5 text-xs mono text-slate-300">
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">Firebase Auth</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">Cloud Firestore</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">Firebase Storage</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">FCM Push</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">MS SQL Server</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">REST APIs</span>
+            <div class="tl-row">
+                <div class="tl-date mono">01.2026 — PRESENT</div>
+                <div>
+                    <div class="tl-role" data-i18n="exp2_role">Founder &amp; Independent Developer</div>
+                    <div class="tl-org mono">YOM Games (<a href="https://yomgames.com.tr" target="_blank" style="text-decoration: underline;">yomgames.com.tr</a>) · Remote</div>
+                    <div class="tl-text" data-i18n="exp2_desc">Shipped Rhythm Box to Google Play Store using Flutter &amp; Firebase and built the studio's bilingual web platform.</div>
                 </div>
             </div>
 
-            <div class="glass rounded-2xl p-5 card-hover">
-                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-4">
-                    <i class="fa-solid fa-code text-lg"></i>
-                </div>
-                <h3 class="font-bold text-white mb-2 text-base" data-i18n="skill_cat_4">Languages & Engines</h3>
-                <div class="flex flex-wrap gap-1.5 text-xs mono text-slate-300">
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">Java</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">C++</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">C#</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">Unreal Engine 5.3</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">Unity</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">x86 Assembly</span>
-                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 border border-slate-700/70">Git & Gradle</span>
+            <div class="tl-row">
+                <div class="tl-date mono">06.2023 — 06.2027</div>
+                <div>
+                    <div class="tl-role" data-i18n="edu2_role">B.Sc. Computer Engineering (4th Year / Senior)</div>
+                    <div class="tl-org mono">Ardahan University · Turkey · GPA: 2.94 / 4.00</div>
+                    <div class="tl-text" data-i18n="edu2_desc">Senior undergraduate student. Certified in Networking Basics (May 2026 — TCP/IP &amp; OSI architecture).</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Engineering Projects Section -->
-    <section id="projects" class="py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-            <div class="flex items-center gap-3">
-                <h2 class="text-2xl font-bold text-white tracking-tight" data-i18n="sec_projects">Featured Engineering Projects</h2>
-            </div>
-            <!-- Filter Pills -->
-            <div class="flex flex-wrap gap-2 text-xs font-semibold">
-                <button onclick="filterProjects('all')" id="flt-all" class="px-3.5 py-1.5 rounded-lg bg-sky-500 text-slate-950 transition-all" data-i18n="flt_all">All (6)</button>
-                <button onclick="filterProjects('mobile')" id="flt-mobile" class="px-3.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white transition-all" data-i18n="flt_mobile">Mobile & Flutter</button>
-                <button onclick="filterProjects('ai')" id="flt-ai" class="px-3.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white transition-all" data-i18n="flt_ai">AI & Python</button>
-                <button onclick="filterProjects('game')" id="flt-game" class="px-3.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white transition-all" data-i18n="flt_game">Games & C++/Java</button>
+    <!-- 03 / Technical Specification Index -->
+    <section class="sec-block divider">
+        <div class="sec-head">
+            <div class="sec-label mono">
+                <span class="num">03</span>
+                <span>/</span>
+                <span data-i18n="sec_specs">TECHNICAL INDEX</span>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
-            <!-- Project 1: AnimeAI Studio -->
-            <div class="glass rounded-2xl p-6 card-hover flex flex-col justify-between project-card" data-category="ai">
-                <div>
-                    <div class="flex items-center justify-between gap-2 mb-3">
-                        <span class="px-2.5 py-1 rounded-md bg-purple-500/15 text-purple-300 border border-purple-500/30 text-xs font-semibold mono">AI & Computer Vision</span>
-                        <a href="https://github.com/Samrili/animeai" target="_blank" class="text-slate-400 hover:text-sky-400 text-sm mono flex items-center gap-1.5">
-                            <i class="fa-brands fa-github"></i> Samrili/animeai <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                        </a>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">AnimeAI Studio — Local Video-to-Video AI Engine</h3>
-                    <p class="text-sm text-slate-300 leading-relaxed mb-4" data-i18n="proj_anime_desc">
-                        Dual-workspace local generative AI suite integrating a ComfyUI backend (AnimateDiff, ControlNet Lineart/Depth, ToonYou) with a custom bilingual web interface (RingPulse AI Studio). Includes an interactive HTML5 Canvas region-protection masking tool and a smart hardware launcher (smart_launcher.py) that detects GPU VRAM (4GB–24GB+) to prevent CUDA Out-Of-Memory crashes.
-                    </p>
-                </div>
-                <div class="flex flex-wrap gap-1.5 text-xs mono text-slate-400 pt-3 border-t border-slate-800/80">
-                    <span>Python</span> • <span>PyTorch</span> • <span>ComfyUI</span> • <span>AnimateDiff</span> • <span>ControlNet</span> • <span>HTML5 Canvas</span>
-                </div>
+        <div class="spec-table">
+            <div class="spec-row">
+                <div class="spec-key mono" data-i18n="sk_1">MOBILE &amp; UI</div>
+                <div class="spec-val">Flutter, Dart, Provider (State Management), Material Design, HTML5 Canvas, CSS3, Tailwind CSS, JavaScript</div>
             </div>
-
-            <!-- Project 2: AvukatBul -->
-            <div class="glass rounded-2xl p-6 card-hover flex flex-col justify-between project-card" data-category="mobile">
-                <div>
-                    <div class="flex items-center justify-between gap-2 mb-3">
-                        <span class="px-2.5 py-1 rounded-md bg-sky-500/15 text-sky-300 border border-sky-500/30 text-xs font-semibold mono">Flutter & Firebase</span>
-                        <a href="https://github.com/Samrili/AvukatBul" target="_blank" class="text-slate-400 hover:text-sky-400 text-sm mono flex items-center gap-1.5">
-                            <i class="fa-brands fa-github"></i> Samrili/AvukatBul <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                        </a>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">AvukatBul — Legal Consultation Mobile App</h3>
-                    <p class="text-sm text-slate-300 leading-relaxed mb-4" data-i18n="proj_avukat_desc">
-                        Role-based (Client & Lawyer) cross-platform mobile platform built with Flutter and Provider state management. Features city/specialty lawyer discovery, real-time one-on-one chat messaging, consultation package management, case tracking, Google Sign-In, custom Firestore security rules, and FCM push notifications.
-                    </p>
-                </div>
-                <div class="flex flex-wrap gap-1.5 text-xs mono text-slate-400 pt-3 border-t border-slate-800/80">
-                    <span>Flutter</span> • <span>Dart</span> • <span>Provider</span> • <span>Cloud Firestore</span> • <span>Firebase Auth</span> • <span>FCM</span>
-                </div>
+            <div class="spec-row">
+                <div class="spec-key mono" data-i18n="sk_2">APPLIED AI</div>
+                <div class="spec-val">Python, PyTorch (CUDA), ComfyUI Workflows, AnimateDiff, ControlNet (Lineart/Depth), Local Diffusion</div>
             </div>
-
-            <!-- Project 3: Rhythm Box (YOM Games) -->
-            <div class="glass rounded-2xl p-6 card-hover flex flex-col justify-between project-card" data-category="mobile game">
-                <div>
-                    <div class="flex items-center justify-between gap-2 mb-3">
-                        <span class="px-2.5 py-1 rounded-md bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 text-xs font-semibold mono">Published on Google Play</span>
-                        <div class="flex items-center gap-3">
-                            <a href="https://yomgames.com.tr" target="_blank" class="text-slate-400 hover:text-sky-400 text-xs mono flex items-center gap-1">
-                                <i class="fa-solid fa-globe"></i> yomgames.com.tr
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.yomgames.rhythmbox" target="_blank" class="text-emerald-400 hover:text-emerald-300 text-xs mono flex items-center gap-1">
-                                <i class="fa-brands fa-google-play"></i> Play Store
-                            </a>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Rhythm Box — Commercial Mobile Game (YOM Games)</h3>
-                    <p class="text-sm text-slate-300 leading-relaxed mb-4" data-i18n="proj_rhythm_desc">
-                        Developed and published under my independent studio YOM Games on Google Play Store (com.yomgames.rhythmbox). Engineered a dynamic audio-rhythm synchronization engine in Flutter with Firebase backend services for player progression and cloud data management.
-                    </p>
-                </div>
-                <div class="flex flex-wrap gap-1.5 text-xs mono text-slate-400 pt-3 border-t border-slate-800/80">
-                    <span>Flutter</span> • <span>Dart</span> • <span>Firebase</span> • <span>Google Play Console</span> • <span>Tailwind CSS</span>
-                </div>
+            <div class="spec-row">
+                <div class="spec-key mono" data-i18n="sk_3">SYSTEMS &amp; ENGINES</div>
+                <div class="spec-val">Java, C++, C#, Unreal Engine 5.3 (C++ &amp; Blueprints), Unity, x86 Assembly, Git, Gradle</div>
             </div>
-
-            <!-- Project 4: Tall Enough -->
-            <div class="glass rounded-2xl p-6 card-hover flex flex-col justify-between project-card" data-category="game">
-                <div>
-                    <div class="flex items-center justify-between gap-2 mb-3">
-                        <span class="px-2.5 py-1 rounded-md bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 text-xs font-semibold mono">Unreal Engine 5.3 & C++</span>
-                        <a href="https://github.com/Samrili/Tall_Enough" target="_blank" class="text-slate-400 hover:text-sky-400 text-sm mono flex items-center gap-1.5">
-                            <i class="fa-brands fa-github"></i> Samrili/Tall_Enough <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                        </a>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Tall Enough — Co-op Multiplayer RTS & Management</h3>
-                    <p class="text-sm text-slate-300 leading-relaxed mb-4" data-i18n="proj_tall_desc">
-                        2-player cooperative real-time strategy and island micromanagement game built with Unreal Engine 5.3. Features full Steam Listen-Server and Dedicated-Server network replication, seed-based procedural island generation, AI Behavior Trees, blacksmith upgrade mechanics, and localization.
-                    </p>
-                </div>
-                <div class="flex flex-wrap gap-1.5 text-xs mono text-slate-400 pt-3 border-t border-slate-800/80">
-                    <span>C++</span> • <span>Unreal Engine 5.3</span> • <span>Blueprints</span> • <span>Steam SDK Multiplayer</span> • <span>AI Behavior Trees</span>
-                </div>
+            <div class="spec-row">
+                <div class="spec-key mono" data-i18n="sk_4">BACKEND &amp; DATA</div>
+                <div class="spec-val">Firebase (Auth, Cloud Firestore, Storage, FCM Push), MS SQL Server (MSSQL), REST APIs</div>
             </div>
-
-            <!-- Project 5: K.A.R.M.A -->
-            <div class="glass rounded-2xl p-6 card-hover flex flex-col justify-between project-card" data-category="game">
-                <div>
-                    <div class="flex items-center justify-between gap-2 mb-3">
-                        <span class="px-2.5 py-1 rounded-md bg-amber-500/15 text-amber-300 border border-amber-500/30 text-xs font-semibold mono">🏆 5th Place — Game Jam</span>
-                        <span class="text-xs mono text-slate-400">2026 Karadeniz Game Jam</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">K.A.R.M.A — 2D 1-Bit Platformer</h3>
-                    <p class="text-sm text-slate-300 leading-relaxed mb-4" data-i18n="proj_karma_desc">
-                        Co-developed a complete 2D 1-bit platformer from scratch within a strict 48-hour deadline in a 2-person team using Unity and C#, earning 5th place overall at the 2026 Karadeniz Game Jam.
-                    </p>
-                </div>
-                <div class="flex flex-wrap gap-1.5 text-xs mono text-slate-400 pt-3 border-t border-slate-800/80">
-                    <span>Unity</span> • <span>C#</span> • <span>2D Physics</span> • <span>Rapid Prototyping (48h)</span>
-                </div>
-            </div>
-
-            <!-- Project 6: ProjectE-Integration -->
-            <div class="glass rounded-2xl p-6 card-hover flex flex-col justify-between project-card" data-category="game">
-                <div>
-                    <div class="flex items-center justify-between gap-2 mb-3">
-                        <span class="px-2.5 py-1 rounded-md bg-rose-500/15 text-rose-300 border border-rose-500/30 text-xs font-semibold mono">Open Source Java</span>
-                        <a href="https://github.com/Samrili/ProjectE-Integration" target="_blank" class="text-slate-400 hover:text-sky-400 text-sm mono flex items-center gap-1.5">
-                            <i class="fa-brands fa-github"></i> Samrili/ProjectE-Integration <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                        </a>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">ProjectE-Integration — Mod Compatibility</h3>
-                    <p class="text-sm text-slate-300 leading-relaxed mb-4" data-i18n="proj_pe_desc">
-                        Analyzed and debugged cross-mod recipe conversion mappings in a ~300KB open-source Java codebase, resolving compatibility issues and updating module targets toward Minecraft 1.21.x.
-                    </p>
-                </div>
-                <div class="flex flex-wrap gap-1.5 text-xs mono text-slate-400 pt-3 border-t border-slate-800/80">
-                    <span>Java</span> • <span>Gradle</span> • <span>NeoForge</span> • <span>Open Source Debugging</span>
-                </div>
+            <div class="spec-row">
+                <div class="spec-key mono" data-i18n="sk_5">SPOKEN LANGUAGES</div>
+                <div class="spec-val" data-i18n="sk_5_val">Turkish (Native / C2) · English (Professional Working / B2–C1) · Japanese (A2) · Polish (A1)</div>
             </div>
         </div>
     </section>
 
-    <!-- Experience & Education Section -->
-    <section id="experience" class="py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Experience -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="contact-grid">
             <div>
-                <div class="flex items-center gap-3 mb-6">
-                    <h2 class="text-2xl font-bold text-white tracking-tight" data-i18n="sec_exp">Experience</h2>
-                    <div class="h-px bg-slate-800 flex-1"></div>
+                <div class="sec-label mono" style="margin-bottom: 6px;">
+                    <span class="num">04</span>
+                    <span>/</span>
+                    <span data-i18n="sec_contact">DIRECT CONTACT (CLICK OR PRESS [C] TO COPY EMAIL)</span>
                 </div>
-                <div class="space-y-4">
-                    <div class="glass rounded-2xl p-5">
-                        <div class="flex items-center justify-between text-xs mono text-sky-400 mb-1">
-                            <span>Talos Yazılım • Istanbul, Turkey</span>
-                            <span>Jun 2026 – Jul 2026</span>
-                        </div>
-                        <h3 class="text-base font-bold text-white mb-2" data-i18n="exp_1_title">Mobile Application Development Intern</h3>
-                        <p class="text-sm text-slate-300 leading-relaxed" data-i18n="exp_1_desc">
-                            Refined mobile UI components, responsive layouts, and screen transition animations. Diagnosed runtime defects using debugging and profiling tools and documented root-cause analyses.
-                        </p>
-                    </div>
-
-                    <div class="glass rounded-2xl p-5">
-                        <div class="flex items-center justify-between text-xs mono text-indigo-400 mb-1">
-                            <span>YOM Games (yomgames.com.tr) • Remote</span>
-                            <span>Jan 2026 – Present</span>
-                        </div>
-                        <h3 class="text-base font-bold text-white mb-2" data-i18n="exp_2_title">Founder & Independent Mobile / Game Developer</h3>
-                        <p class="text-sm text-slate-300 leading-relaxed" data-i18n="exp_2_desc">
-                            Built and shipped Rhythm Box on Google Play Store with Flutter & Firebase. Designed and deployed the studio's bilingual (EN/TR) web platform using Tailwind CSS and JavaScript.
-                        </p>
-                    </div>
-                </div>
+                <button class="copy-email-btn mono" onclick="copyEmail()">
+                    <span>samrili.yusuf@gmail.com</span>
+                    <span style="font-size: 12px; color: var(--ink-faint);">[copy]</span>
+                </button>
             </div>
-
-            <!-- Education & Visa Status -->
-            <div>
-                <div class="flex items-center gap-3 mb-6">
-                    <h2 class="text-2xl font-bold text-white tracking-tight" data-i18n="sec_edu">Education & Work Eligibility</h2>
-                    <div class="h-px bg-slate-800 flex-1"></div>
-                </div>
-                <div class="space-y-4">
-                    <div class="glass rounded-2xl p-5">
-                        <div class="flex items-center justify-between text-xs mono text-emerald-400 mb-1">
-                            <span>WSB University (Akademia WSB) • Sosnowiec, Poland</span>
-                            <span>Jul 2026 – Present</span>
-                        </div>
-                        <h3 class="text-base font-bold text-white mb-1" data-i18n="edu_1_title">B.Sc. in Computer Engineering (Erasmus+ Exchange)</h3>
-                        <p class="text-sm text-slate-400" data-i18n="edu_1_sub">4th Year (Final-Year Undergraduate) • Coursework in English</p>
-                    </div>
-
-                    <div class="glass rounded-2xl p-5">
-                        <div class="flex items-center justify-between text-xs mono text-slate-400 mb-1">
-                            <span>Ardahan University • Turkey</span>
-                            <span>Jun 2023 – Jun 2027</span>
-                        </div>
-                        <h3 class="text-base font-bold text-white mb-1" data-i18n="edu_2_title">B.Sc. in Computer Engineering</h3>
-                        <p class="text-sm text-slate-400" data-i18n="edu_2_sub">4th Year (Senior Student) • GPA: 2.94 / 4.00 • Networking Basics Certified</p>
-                    </div>
-
-                    <div class="glass rounded-2xl p-5 border-emerald-500/30 bg-emerald-950/10">
-                        <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm mb-1">
-                            <i class="fa-solid fa-passport"></i>
-                            <span data-i18n="visa_title">EU / Poland Work Authorization</span>
-                        </div>
-                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed" data-i18n="visa_desc">
-                            Holder of a valid Long-Term Poland/EU Student Visa (Type D) with full-time university student status (under 26 years old). Eligible for both part-time and full-time remote or hybrid employment across Poland, the EU, and globally.
-                        </p>
-                    </div>
-                </div>
+            <div class="mono" style="font-size: 13px; color: var(--ink-muted);">
+                <a href="tel:+48797144781">+48 797 144 781 (PL)</a>
+                <span style="margin: 0 8px; color: var(--line);">/</span>
+                <a href="tel:+905421270661">+90 542 127 0661 (TR)</a>
             </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <footer id="contact" class="mt-auto pt-12 pb-10 px-4 sm:px-6 lg:px-8 border-t border-slate-800/80 bg-slate-950/60">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="kbd-bar mono">
             <div>
-                <h2 class="text-lg font-bold text-white mb-1" data-i18n="contact_heading">Let's build something together</h2>
-                <p class="text-sm text-slate-400" data-i18n="contact_sub">Available for remote Software, Mobile (Flutter), and AI Engineering roles.</p>
+                <span>Shortcuts:</span>
+                <kbd>T</kbd> Theme
+                <kbd>1</kbd> EN
+                <kbd>2</kbd> TR
+                <kbd>3</kbd> PL
+                <kbd>C</kbd> Copy Email
             </div>
-            <div class="flex flex-wrap items-center gap-3">
-                <a href="mailto:samrili.yusuf@gmail.com" class="px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-paper-plane"></i> samrili.yusuf@gmail.com
-                </a>
-                <a href="tel:+48797144781" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm border border-slate-700 transition-all">
-                    +48 797 144 781
-                </a>
-                <a href="tel:+905421270661" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm border border-slate-700 transition-all">
-                    +90 542 127 0661
-                </a>
-            </div>
+            <div>Muhammed Yusuf Bayazıtoğlu — Handcrafted HTML/CSS</div>
         </div>
     </footer>
+</div>
 
-    <script>
-        const i18n = {
-            en: {
-                nav_about: "About",
-                nav_skills: "Skills",
-                nav_projects: "Projects",
-                nav_exp: "Experience",
-                nav_contact: "Contact",
-                hero_badge: "Sosnowiec, Poland (Erasmus+) • Valid EU/PL Long-Term Visa: Eligible for Full-Time & Part-Time Remote Work",
-                hero_greeting: "Hi, I'm",
-                hero_role: "Final-Year (4th-Year) Computer Engineering Student • Mobile (Flutter) & Applied AI Software Developer",
-                hero_desc: "Currently studying Computer Engineering at WSB University (Poland) via Erasmus+. I build production-ready cross-platform mobile apps with Flutter & Firebase, engineer local generative AI video pipelines in Python (PyTorch, ComfyUI, ControlNet, AnimateDiff), and develop multiplayer systems in Unreal Engine 5 & C++. Founder of YOM Games with commercial software shipped on Google Play Store.",
-                sec_skills: "Technical Stack",
-                skill_cat_1: "Mobile & Frontend",
-                skill_cat_2: "AI & Computer Vision",
-                skill_cat_3: "Backend, Cloud & DB",
-                skill_cat_4: "Languages & Engines",
-                sec_projects: "Featured Engineering Projects",
-                flt_all: "All (6)",
-                flt_mobile: "Mobile & Flutter",
-                flt_ai: "AI & Python",
-                flt_game: "Games & C++/Java",
-                proj_anime_desc: "Dual-workspace local generative AI suite integrating a ComfyUI backend (AnimateDiff, ControlNet Lineart/Depth, ToonYou) with a custom bilingual web interface (RingPulse AI Studio). Includes an interactive HTML5 Canvas region-protection masking tool and a smart hardware launcher (smart_launcher.py) that detects GPU VRAM (4GB–24GB+) to prevent CUDA Out-Of-Memory crashes.",
-                proj_avukat_desc: "Role-based (Client & Lawyer) cross-platform mobile platform built with Flutter and Provider state management. Features city/specialty lawyer discovery, real-time one-on-one chat messaging, consultation package management, case tracking, Google Sign-In, custom Firestore security rules, and FCM push notifications.",
-                proj_rhythm_desc: "Developed and published under my independent studio YOM Games on Google Play Store (com.yomgames.rhythmbox). Engineered a dynamic audio-rhythm synchronization engine in Flutter with Firebase backend services for player progression and cloud data management.",
-                proj_tall_desc: "2-player cooperative real-time strategy and island micromanagement game built with Unreal Engine 5.3. Features full Steam Listen-Server and Dedicated-Server network replication, seed-based procedural island generation, AI Behavior Trees, blacksmith upgrade mechanics, and localization.",
-                proj_karma_desc: "Co-developed a complete 2D 1-bit platformer from scratch within a strict 48-hour deadline in a 2-person team using Unity and C#, earning 5th place overall at the 2026 Karadeniz Game Jam.",
-                proj_pe_desc: "Analyzed and debugged cross-mod recipe conversion mappings in a ~300KB open-source Java codebase, resolving compatibility issues and updating module targets toward Minecraft 1.21.x.",
-                sec_exp: "Experience",
-                exp_1_title: "Mobile Application Development Intern",
-                exp_1_desc: "Refined mobile UI components, responsive layouts, and screen transition animations. Diagnosed runtime defects using debugging and profiling tools and documented root-cause analyses.",
-                exp_2_title: "Founder & Independent Mobile / Game Developer",
-                exp_2_desc: "Built and shipped Rhythm Box on Google Play Store with Flutter & Firebase. Designed and deployed the studio's bilingual (EN/TR) web platform using Tailwind CSS and JavaScript.",
-                sec_edu: "Education & Work Eligibility",
-                edu_1_title: "B.Sc. in Computer Engineering (Erasmus+ Exchange)",
-                edu_1_sub: "4th Year (Final-Year Undergraduate) • Coursework in English",
-                edu_2_title: "B.Sc. in Computer Engineering",
-                edu_2_sub: "4th Year (Senior Student) • GPA: 2.94 / 4.00 • Networking Basics Certified",
-                visa_title: "EU / Poland Work Authorization",
-                visa_desc: "Holder of a valid Long-Term Poland/EU Student Visa (Type D) with full-time university student status (under 26 years old). Eligible for both part-time and full-time remote or hybrid employment across Poland, the EU, and globally.",
-                contact_heading: "Let's build something together",
-                contact_sub: "Available for remote Software, Mobile (Flutter), and AI Engineering roles."
-            },
-            tr: {
-                nav_about: "Hakkımda",
-                nav_skills: "Yetenekler",
-                nav_projects: "Projeler",
-                nav_exp: "Deneyim",
-                nav_contact: "İletişim",
-                hero_badge: "Sosnowiec, Polonya (Erasmus+) • Uzun Dönem AB/Polonya Vizesi: Tam ve Yarı Zamanlı Uzaktan Çalışmaya Uygun",
-                hero_greeting: "Merhaba, ben",
-                hero_role: "Bilgisayar Mühendisliği 4. Sınıf (Son Sınıf) • Mobil (Flutter) & Yapay Zeka Yazılım Geliştirici",
-                hero_desc: "Eğitimime Erasmus+ kapsamında Polonya'daki WSB University bünyesinde devam ediyorum. Flutter ve Firebase ile çapraz platform mobil uygulamalar, Python (PyTorch, ComfyUI, ControlNet, AnimateDiff) ile yerel üretken yapay zeka sistemleri ve Unreal Engine 5 / C++ ile çok oyunculu projeler geliştiriyorum. Google Play Store'da yayınlanmış oyunu bulunan YOM Games'in kurucusuyum.",
-                sec_skills: "Teknik Yetenekler",
-                skill_cat_1: "Mobil & Ön Yüz",
-                skill_cat_2: "Yapay Zeka & Görüntü İşleme",
-                skill_cat_3: "Backend, Bulut & Veritabanı",
-                skill_cat_4: "Diller & Oyun Motorları",
-                sec_projects: "Öne Çıkan Mühendislik Projeleri",
-                flt_all: "Tümü (6)",
-                flt_mobile: "Mobil & Flutter",
-                flt_ai: "Yapay Zeka & Python",
-                flt_game: "Oyun & C++/Java",
-                proj_anime_desc: "ComfyUI arka ucu (AnimateDiff, ControlNet Lineart/Depth, ToonYou) ile özel geliştirilen RingPulse AI Studio web arayüzünü birleştiren çift sekmeli yerel video-anime dönüştürme stüdyosu. HTML5 Canvas bölge koruma maskeleme aracı ve GPU VRAM kapasitesini (4GB–24GB+) algılayıp CUDA OOM çökmelerini önleyen smart_launcher.py modülünü içerir.",
-                proj_avukat_desc: "Avukat ve müvekkil rol mimarisine sahip, Flutter ve Provider durum yönetimiyle geliştirilen mobil danışmanlık platformu. Şehir bazlı avukat filtreleme, gerçek zamanlı sohbet, paket satın alma, vaka yönetimi, Google Sign-In ve FCM anlık bildirimlerini içerir.",
-                proj_rhythm_desc: "Kurucusu olduğum YOM Games çatısı altında Flutter ve Firebase ile geliştirip Google Play Store'da (com.yomgames.rhythmbox) yayınladığım mobil ritim oyunu. Dinamik ses-ritim senkronizasyon motoru ve bulut veri yönetimine sahiptir.",
-                proj_tall_desc: "Unreal Engine 5.3 ve C++ ile geliştirilen, Steam Listen-Server ve Dedicated-Server ağ replikasyonuna sahip 2 kişilik eşli (co-op) gerçek zamanlı strateji ve ada yönetimi oyunu. Prosedürel ada üretimi, yapay zeka davranış ağaçları ve demirci geliştirme sistemini içerir.",
-                proj_karma_desc: "2026 Karadeniz Gamejam maratonunda 2 kişilik ekiple 48 saat içinde Unity ve C# kullanılarak sıfırdan geliştirilen ve yarışmada 5.'lik derecesi kazanan 2D 1-Bit platform oyunu.",
-                proj_pe_desc: "Açık kaynaklı ~300KB Java kod tabanına sahip Minecraft modunda modlar arası EMC dönüşüm haritalaması (recipe mapping) ve Minecraft 1.21.x uyumluluk hatalarının analiz edilerek giderilmesi.",
-                sec_exp: "Deneyim",
-                exp_1_title: "Mobil Uygulama Geliştirme Stajyeri",
-                exp_1_desc: "Mobil arayüz (UI) bileşenlerinin iyileştirilmesi, duyarlı ekran tasarımları ve geçiş animasyonlarının geliştirilmesi. Hata ayıklama araçlarıyla çalışma zamanı hatalarının tespiti ve çözümü.",
-                exp_2_title: "Kurucu & Bağımsız Mobil / Oyun Geliştirici",
-                exp_2_desc: "Flutter ve Firebase ile Rhythm Box mobil oyununun geliştirilip Google Play Store'da yayınlanması ve çift dilli kurumsal stüdyo web sitesinin (yomgames.com.tr) yayına alınması.",
-                sec_edu: "Eğitim & Çalışma İzni Durumu",
-                edu_1_title: "Bilgisayar Mühendisliği Lisans (Erasmus+ Değişim Programı)",
-                edu_1_sub: "4. Sınıf (Son Sınıf) • İngilizce Eğitim",
-                edu_2_title: "Bilgisayar Mühendisliği Lisans Programı",
-                edu_2_sub: "4. Sınıf (Son Sınıf) • GANO (GPA): 2.94 / 4.00 • Networking Basics Sertifikası",
-                visa_title: "AB / Polonya Yasal Çalışma Durumu",
-                visa_desc: "Uzun dönem Polonya/AB öğrenci vizesi (D Tipi) ve tam zamanlı üniversite öğrencisi statüsü (<26 yaş) sahibiyim. Hem yarı zamanlı hem de tam zamanlı uzaktan (remote) veya hibrit pozisyonlarda yasal olarak çalışmaya uygunum.",
-                contact_heading: "Birlikte çalışalım",
-                contact_sub: "Uzaktan (Remote) Yazılım, Mobil (Flutter) ve Yapay Zeka Mühendisliği pozisyonları için iletişime geçebilirsiniz."
-            },
-            pl: {
-                nav_about: "O mnie",
-                nav_skills: "Umiejętności",
-                nav_projects: "Projekty",
-                nav_exp: "Doświadczenie",
-                nav_contact: "Kontakt",
-                hero_badge: "Sosnowiec, Polska (Erasmus+) • Ważna długoterminowa wiza studencka D: pełny / niepełny etat (<26 lat)",
-                hero_greeting: "Cześć, jestem",
-                hero_role: "Student IV roku Inżynierii Komputerowej • Programista Aplikacji Mobilnych (Flutter) i AI",
-                hero_desc: "Studiuję Inżynierię Komputerową w Akademii WSB w Sosnowcu w ramach programu Erasmus+. Tworzę wieloplatformowe aplikacje mobilne we Flutterze i Firebase, lokalne potoki generatywnej sztucznej inteligencji w Pythonie (PyTorch, ComfyUI, ControlNet, AnimateDiff) oraz gry wieloosobowe w Unreal Engine 5 i C++. Założyciel studia YOM Games z grą opublikowaną w Google Play Store.",
-                sec_skills: "Technologie",
-                skill_cat_1: "Mobile i Frontend",
-                skill_cat_2: "Sztuczna Inteligencja (AI)",
-                skill_cat_3: "Backend, Chmura i Bazy Danych",
-                skill_cat_4: "Języki i Silniki Gier",
-                sec_projects: "Wybrane Projekty Inżynierskie",
-                flt_all: "Wszystkie (6)",
-                flt_mobile: "Mobile i Flutter",
-                flt_ai: "AI i Python",
-                flt_game: "Gry i C++/Java",
-                proj_anime_desc: "Dwumodułowe środowisko generatywnej AI łączące backend ComfyUI (AnimateDiff, ControlNet Lineart/Depth, ToonYou) z autorskim interfejsem webowym RingPulse AI Studio. Zawiera narzędzie maskowania w HTML5 Canvas oraz skrypt smart_launcher.py automatycznie wykrywający pamięć VRAM GPU (4GB–24GB+).",
-                proj_avukat_desc: "Wieloplatformowa aplikacja mobilna we Flutterze z podziałem na role (Klient i Prawnik) oraz zarządzaniem stanem Provider. Wyszukiwarka prawników, czat w czasie rzeczywistym, pakiety konsultacyjne, zarządzanie sprawami i powiadomienia FCM.",
-                proj_rhythm_desc: "Gra mobilna zaprojektowana i opublikowana w Google Play Store (com.yomgames.rhythmbox) pod szyldem mojego studia YOM Games przy użyciu Fluttera i Firebase.",
-                proj_tall_desc: "Dwuosobowa gra strategiczna czasu rzeczywistego (Co-op RTS) na silniku Unreal Engine 5.3 z replikacją sieciową Steam (Listen/Dedicated Server), proceduralnym generowaniem wysp i drzewami zachowań AI.",
-                proj_karma_desc: "Kompletna gra platformowa 2D 1-Bit stworzona od podstaw w 48 godzin w dwuosobowym zespole (Unity / C#), nagrodzona 5. miejscem podczas 2026 Karadeniz Game Jam.",
-                proj_pe_desc: "Analiza kodu i naprawa błędów mapowania receptur EMC w otwartoźródłowym projekcie Java (~300KB kodu) podczas aktualizacji kompatybilności do Minecraft 1.21.x.",
-                sec_exp: "Doświadczenie Zawodowe",
-                exp_1_title: "Stażysta ds. Rozwoju Aplikacji Mobilnych",
-                exp_1_desc: "Optymalizacja komponentów interfejsu użytkownika (UI), wdrażanie responsywnych widoków i animacji oraz analiza i naprawa błędów czasu wykonania (runtime bugs).",
-                exp_2_title: "Założyciel i Niezależny Programista Mobilny / Gier",
-                exp_2_desc: "Stworzenie i publikacja gry Rhythm Box w Google Play Store (Flutter & Firebase) oraz wdrożenie dwujęzycznej platformy webowej studia (yomgames.com.tr).",
-                sec_edu: "Wykształcenie i Status Prawny",
-                edu_1_title: "Inżynieria Komputerowa (Wymiana Erasmus+)",
-                edu_1_sub: "IV rok (ostatni rok studiów inżynierskich) • Studia w języku angielskim",
-                edu_2_title: "Inżynieria Komputerowa (Studia Inżynierskie B.Sc.)",
-                edu_2_sub: "IV rok studiów • Średnia ocen (GPA): 2.94 / 4.00 • Certyfikat Networking Basics",
-                visa_title: "Uprawnienia do pracy w Polsce i UE",
-                visa_desc: "Posiadam ważną długoterminową wizę studencką typu D oraz status studenta studiów stacjonarnych (<26 lat — ulga dla młodych). Pełna dyspozycyjność do pracy zdalnej lub hybrydowej w pełnym lub niepełnym wymiarze godzin.",
-                contact_heading: "Skontaktuj się ze mną",
-                contact_sub: "Otwarty na oferty pracy zdalnej: Mobile (Flutter), AI oraz Software Engineering."
+<div id="toast" class="mono">Copied samrili.yusuf@gmail.com to clipboard</div>
+
+<script>
+    // Live CET clock (Sosnowiec, Poland)
+    function updateClock() {
+        try {
+            const now = new Date();
+            const fmt = new Intl.DateTimeFormat('en-GB', {
+                timeZone: 'Europe/Warsaw',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            }).format(now);
+            document.getElementById('clock').textContent = fmt + ' CET';
+        } catch (e) {}
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Accordion toggle
+    function toggleProj(summaryEl) {
+        const item = summaryEl.parentElement;
+        item.classList.toggle('open');
+    }
+
+    // Filter works
+    function filterWorks(cat) {
+        document.querySelectorAll('.proj-item').forEach(el => {
+            const c = el.getAttribute('data-cat');
+            if (cat === 'all' || c.includes(cat)) {
+                el.style.display = 'block';
+            } else {
+                el.style.display = 'none';
             }
-        };
+        });
+        ['all', 'mobile', 'ai', 'game'].forEach(k => {
+            const btn = document.getElementById('flt-' + k);
+            if (btn) btn.classList.toggle('active', k === cat);
+        });
+    }
 
-        function setLang(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (i18n[lang] && i18n[lang][key]) {
-                    el.textContent = i18n[lang][key];
-                }
-            });
-            ['en', 'tr', 'pl'].forEach(l => {
-                const btn = document.getElementById('btn-' + l);
-                if (l === lang) {
-                    btn.className = "px-2.5 py-1 rounded-md transition-all bg-sky-500 text-slate-950";
-                } else {
-                    btn.className = "px-2.5 py-1 rounded-md transition-all text-slate-400 hover:text-white";
-                }
-            });
-            localStorage.setItem('pref_lang', lang);
+    // Theme toggle
+    function toggleTheme() {
+        const html = document.documentElement;
+        const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        document.getElementById('theme-label').textContent = next === 'dark' ? 'LIGHT [T]' : 'DARK [T]';
+        localStorage.setItem('site_theme', next);
+    }
+
+    // Copy email
+    function copyEmail() {
+        navigator.clipboard.writeText('samrili.yusuf@gmail.com');
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    // Translations
+    const dict = {
+        en: {
+            kicker: "COMPUTER ENGINEERING (4TH YEAR / SENIOR) — ERASMUS+ @ WSB UNIVERSITY",
+            hero_sub: "builds mobile software & local AI systems.",
+            hero_bio: "I am a final-year Computer Engineering student currently based in Poland via Erasmus+. Most of my time goes into building cross-platform mobile applications with <strong>Flutter &amp; Firebase</strong>, writing local video-to-video diffusion tooling in <strong>Python (PyTorch, ComfyUI, ControlNet)</strong>, and shipping indie games under my studio <strong>YOM Games</strong>.",
+            visa_strip: "Valid Poland/EU Long-Term Student Visa (Type D, under 26 status) — legally eligible for full-time & part-time remote or hybrid engineering roles.",
+            sec_works: "SELECTED ENGINEERING WORKS (CLICK ROW TO INSPECT)",
+            flt_all: "All [6]",
+            p1_tag: "— Local Video-to-Video Diffusion & Canvas Masking",
+            p1_desc: "Turnkey local generative AI suite pairing a ComfyUI backend (AnimateDiff, ControlNet Lineart/Depth, ToonYou) with a custom bilingual web interface (RingPulse AI Studio). Built an HTML5 Canvas brush/rectangle region-protection masking tool to preserve faces and logos during inference, plus a hardware-aware launcher (smart_launcher.py) that reads GPU VRAM capacity (4GB–24GB+) and sets memory flags automatically to prevent CUDA Out-Of-Memory crashes.",
+            p2_tag: "— Role-Based Legal Consultation Mobile Platform",
+            p2_desc: "Cross-platform mobile application built with Flutter and Provider state management featuring dual role flows (Lawyer & Client). Includes city and specialty search across 81 provinces, real-time 1-on-1 chat backed by Cloud Firestore and custom security rules (firestore.rules), consultation package management, case tracking, Google Sign-In, and FCM push notifications.",
+            p3_tag: "— Commercial Mobile Game on Google Play",
+            p3_desc: "Designed, programmed, and shipped to production on the Google Play Store (com.yomgames.rhythmbox) under my independent studio YOM Games. Features a custom audio-rhythm synchronization engine in Flutter, cloud player persistence via Firebase, and a bilingual studio web platform (yomgames.com.tr).",
+            p4_tag: "— Co-op Multiplayer RTS & Island Management",
+            p4_desc: "Two-player cooperative real-time strategy game built on Unreal Engine 5.3 with full Steam Listen-Server and Dedicated-Server replication. Implemented procedural seed-based island generation, AI Behavior Trees, blacksmith upgrade mechanics, speed controls, and UI localization.",
+            p5_tag: "— 5th Place @ 2026 Karadeniz Game Jam",
+            p5_desc: "Built a complete 2D 1-bit platformer from scratch within 48 hours in a 2-person team using Unity and C#, finishing 5th overall at the 2026 Karadeniz Game Jam.",
+            p6_tag: "— Open-Source Java Mod Compatibility",
+            p6_desc: "Debugged cross-mod recipe conversion mappings in a ~300KB open-source Java repository, resolving broken compatibility hooks while migrating toward Minecraft 1.21.x.",
+            sec_exp: "EXPERIENCE & ACADEMIC TIMELINE",
+            edu1_role: "B.Sc. Computer Engineering (Erasmus+ Exchange)",
+            edu1_desc: "Final-year (4th-year) undergraduate exchange student. Completing senior computer engineering coursework in English.",
+            exp1_role: "Mobile Application Development Intern",
+            exp1_desc: "Worked on mobile UI refinements, screen transition animations, and runtime defect analysis using debugging/profiling tools across test builds.",
+            exp2_role: "Founder & Independent Developer",
+            exp2_desc: "Shipped Rhythm Box to Google Play Store using Flutter & Firebase and built the studio's bilingual web platform.",
+            edu2_role: "B.Sc. Computer Engineering (4th Year / Senior)",
+            edu2_desc: "Senior undergraduate student. Certified in Networking Basics (May 2026 — TCP/IP & OSI architecture).",
+            sec_specs: "TECHNICAL INDEX",
+            sk_1: "MOBILE & UI",
+            sk_2: "APPLIED AI",
+            sk_3: "SYSTEMS & ENGINES",
+            sk_4: "BACKEND & DATA",
+            sk_5: "SPOKEN LANGUAGES",
+            sk_5_val: "Turkish (Native / C2) · English (Professional Working / B2–C1) · Japanese (A2) · Polish (A1)",
+            sec_contact: "DIRECT CONTACT (CLICK OR PRESS [C] TO COPY EMAIL)"
+        },
+        tr: {
+            kicker: "BİLGİSAYAR MÜHENDİSLİĞİ (4. SINIF / SON SINIF) — ERASMUS+ @ WSB UNIVERSITY",
+            hero_sub: "mobil yazılımlar ve yerel yapay zeka araçları geliştiriyor.",
+            hero_bio: "Eğitimime Erasmus+ kapsamında Polonya'daki WSB University bünyesinde devam eden 4. sınıf Bilgisayar Mühendisliği öğrencisiyim. Zamanımın çoğunu <strong>Flutter &amp; Firebase</strong> ile çapraz platform mobil uygulamalar geliştirmeye, <strong>Python (PyTorch, ComfyUI, ControlNet)</strong> ile yerel video-anime difüzyon araçları yazmaya ve kurucusu olduğum <strong>YOM Games</strong> çatısı altında oyun üretmeye ayırıyorum.",
+            visa_strip: "Uzun Dönem Polonya/AB Öğrenci Vizesi (D Tipi, 26 yaş altı öğrenci statüsü) — tam zamanlı ve yarı zamanlı uzaktan (remote) veya hibrit pozisyonlarda yasal çalışma iznine sahip.",
+            sec_works: "SEÇİLİ MÜHENDİSLİK ÇALIŞMALARI (DETAY İÇİN SATIRA TIKLAYIN)",
+            flt_all: "Tümü [6]",
+            p1_tag: "— Yerel Video-to-Video Difüzyon & Canvas Maskeleme",
+            p1_desc: "ComfyUI arka ucu (AnimateDiff, ControlNet Lineart/Depth, ToonYou) ile özel geliştirilen çift dilli RingPulse AI Studio web arayüzünü birleştiren yerel üretken yapay zeka stüdyosu. Yüz ve logoları difüzyon bozulmasından koruyan HTML5 Canvas bölge maskeleme aracını ve GPU VRAM kapasitesini (4GB–24GB+) algılayarak CUDA OOM çökmelerini önleyen smart_launcher.py modülünü içerir.",
+            p2_tag: "— Rol Bazlı Hukuki Danışmanlık Mobil Platformu",
+            p2_desc: "Avukat ve Müvekkil olmak üzere iki ayrı rol akışına sahip, Flutter ve Provider durum yönetimiyle geliştirilmiş çapraz platform mobil uygulama. 81 il/uzmanlık filtreleme, Cloud Firestore ve özel güvenlik kuralları (firestore.rules) üzerinde gerçek zamanlı mesajlaşma, danışmanlık paketi yönetimi, vaka takibi ve FCM bildirimlerini içerir.",
+            p3_tag: "— Google Play Store'da Yayınlanan Mobil Oyun",
+            p3_desc: "Bağımsız stüdyom YOM Games çatısı altında Flutter ve Firebase kullanarak geliştirdiğim ve Google Play Store'da (com.yomgames.rhythmbox) yayınladığım mobil ritim oyunu. Özel ses-ritim senkronizasyon motoru ve bulut veri yönetimine sahiptir.",
+            p4_tag: "— Eşli Çok Oyunculu Strateji & Ada Yönetimi",
+            p4_desc: "Unreal Engine 5.3 üzerinde Steam Listen-Server ve Dedicated-Server ağ replikasyonuna sahip 2 kişilik eşli (co-op) gerçek zamanlı strateji oyunu. Prosedürel ada üretimi, yapay zeka davranış ağaçları, demirci yükseltme sistemi ve lokalizasyon içerir.",
+            p5_tag: "— 2026 Karadeniz Game Jam 5.'lik Derecesi",
+            p5_desc: "Unity ve C# kullanarak 2 kişilik ekiple 48 saatlik süre kısıtı içinde sıfırdan geliştirdiğimiz ve 2026 Karadeniz Game Jam'de 5. sırada yer alan 2D 1-Bit platform oyunu.",
+            p6_tag: "— Açık Kaynak Java Mod Uyumluluk Geliştirmesi",
+            p6_desc: "~300KB büyüklüğündeki açık kaynaklı Java kod tabanında modlar arası EMC dönüşüm haritalaması (recipe mapping) ve Minecraft 1.21.x sürüm uyumluluk hatalarının giderilmesi.",
+            sec_exp: "DENEYİM VE AKADEMİK GEÇMİŞ",
+            edu1_role: "Bilgisayar Mühendisliği Lisans (Erasmus+ Değişim Programı)",
+            edu1_desc: "4. sınıf (son sınıf) lisans değişim öğrencisi. Bilgisayar mühendisliği son sınıf derslerini İngilizce olarak sürdürmekteyim.",
+            exp1_role: "Mobil Uygulama Geliştirme Stajyeri",
+            exp1_desc: "Mobil arayüz (UI) iyileştirmeleri, ekran geçiş animasyonları ve hata ayıklama/profilleme araçlarıyla çalışma zamanı hatalarının kök neden analizi.",
+            exp2_role: "Kurucu & Bağımsız Geliştirici",
+            exp2_desc: "Flutter ve Firebase ile Rhythm Box oyununun Google Play Store'da yayınlanması ve çift dilli kurumsal stüdyo web sitesinin (yomgames.com.tr) geliştirilmesi.",
+            edu2_role: "Bilgisayar Mühendisliği Lisans (4. Sınıf / Son Sınıf)",
+            edu2_desc: "Son sınıf lisans öğrencisi (GANO: 2.94 / 4.00). Networking Basics sertifikalı (Mayıs 2026 — TCP/IP ve OSI mimarisi).",
+            sec_specs: "TEKNİK DİZİN",
+            sk_1: "MOBİL & ARAYÜZ",
+            sk_2: "UYGULAMALI YAPAY ZEKA",
+            sk_3: "SİSTEM & OYUN MOTORU",
+            sk_4: "BACKEND & VERİTABANI",
+            sk_5: "YABANCI DİLLER",
+            sk_5_val: "Türkçe (Anadil / C2) · İngilizce (İyi Seviye / B2–C1) · Japonca (A2) · Lehçe (A1)",
+            sec_contact: "DOĞRUDAN İLETİŞİM (KOPYALAMAK İÇİN TIKLAYIN VEYA [C] TUŞUNA BASIN)"
+        },
+        pl: {
+            kicker: "INŻYNIERIA KOMPUTEROWA (IV ROK) — ERASMUS+ @ AKADEMIA WSB",
+            hero_sub: "tworzy aplikacje mobilne i lokalne systemy AI.",
+            hero_bio: "Jestem studentem ostatniego (IV) roku Inżynierii Komputerowej, obecnie studiującym w Polsce w ramach programu Erasmus+. Większość czasu poświęcam na budowanie aplikacji mobilnych we <strong>Flutterze i Firebase</strong>, tworzenie lokalnych narzędzi dyfuzyjnych wideo w <strong>Pythonie (PyTorch, ComfyUI, ControlNet)</strong> oraz wydawanie gier pod szyldem własnego studia <strong>YOM Games</strong>.",
+            visa_strip: "Ważna długoterminowa wiza studencka typu D (status studenta <26 lat) — pełne prawo do pracy zdalnej lub hybrydowej w pełnym i niepełnym wymiarze godzin.",
+            sec_works: "WYBRANE PROJEKTY INŻYNIERSKIE (KLIKNIJ WIERSZ, ABY ROZWINĄĆ)",
+            flt_all: "Wszystkie [6]",
+            p1_tag: "— Lokalna Dyfuzja Video-to-Video i Maskowanie Canvas",
+            p1_desc: "Lokalne środowisko generatywnej AI łączące backend ComfyUI (AnimateDiff, ControlNet Lineart/Depth, ToonYou) z dwujęzycznym interfejsem RingPulse AI Studio. Zawiera narzędzie maskowania obszarów w HTML5 Canvas oraz skrypt smart_launcher.py automatycznie wykrywający pamięć VRAM GPU (4GB–24GB+).",
+            p2_tag: "— Mobilna Platforma Konsultacji Prawnych",
+            p2_desc: "Wieloplatformowa aplikacja mobilna we Flutterze z zarządzaniem stanem Provider i podziałem na role (Prawnik i Klient). Wyszukiwanie według miast i specjalizacji, czat w czasie rzeczywistym (Cloud Firestore + firestore.rules), zarządzanie pakietami oraz powiadomienia FCM.",
+            p3_tag: "— Gra Mobilna Opublikowana w Google Play",
+            p3_desc: "Zaprojektowana i wydana w Google Play Store (com.yomgames.rhythmbox) pod szyldem mojego studia YOM Games. Silnik synchronizacji audio-rytmu we Flutterze, zapis danych w chmurze Firebase oraz strona studia (yomgames.com.tr).",
+            p4_tag: "— Wieloosobowa Gra Strategiczna Co-op RTS",
+            p4_desc: "Dwuosobowa gra strategiczna na silniku Unreal Engine 5.3 z replikacją sieciową Steam (Listen-Server i Dedicated-Server), proceduralnym generowaniem wysp, drzewami zachowań AI i systemem ulepszeń kuźni.",
+            p5_tag: "— 5. Miejsce @ 2026 Karadeniz Game Jam",
+            p5_desc: "Kompletna gra platformowa 2D 1-Bit stworzona od podstaw w 48 godzin w dwuosobowym zespole (Unity / C#), nagrodzona 5. miejscem w klasyfikacji generalnej.",
+            p6_tag: "— Kompatybilność Open-Source w Javie",
+            p6_desc: "Analiza i naprawa mapowania receptur EMC w otwartoźródłowym repozytorium Java (~300KB kodu) podczas aktualizacji kompatybilności do Minecraft 1.21.x.",
+            sec_exp: "DOŚWIADCZENIE I EDUKACJA",
+            edu1_role: "Inżynieria Komputerowa B.Sc. (Wymiana Erasmus+)",
+            edu1_desc: "Student ostatniego (IV) roku studiów inżynierskich w języku angielskim.",
+            exp1_role: "Stażysta ds. Rozwoju Aplikacji Mobilnych",
+            exp1_desc: "Optymalizacja komponentów UI, animacje przejść ekranowych oraz diagnostyka błędów czasu wykonania przy użyciu narzędzi profilujących.",
+            exp2_role: "Założyciel i Niezależny Programista",
+            exp2_desc: "Wydanie gry Rhythm Box w Google Play Store (Flutter & Firebase) oraz wdrożenie dwujęzycznej strony studia (yomgames.com.tr).",
+            edu2_role: "Inżynieria Komputerowa B.Sc. (IV Rok)",
+            edu2_desc: "Student ostatniego roku (Średnia ocen GPA: 2.94 / 4.00). Certyfikat Networking Basics (05.2026 — architektura TCP/IP i OSI).",
+            sec_specs: "INDEKS TECHNICZNY",
+            sk_1: "MOBILE I INTERFEJS",
+            sk_2: "SZTUCZNA INTELIGENCJA",
+            sk_3: "SYSTEMY I SILNIKI",
+            sk_4: "BACKEND I BAZY DANYCH",
+            sk_5: "JĘZYKI OBCE",
+            sk_5_val: "Turecki (Ojczysty / C2) · Angielski (B2–C1) · Japoński (A2) · Polski (A1)",
+            sec_contact: "KONTAKT BEZPOŚREDNI (KLIKNIJ LUB NACIŚNIJ [C], ABY SKOPIOWAĆ)"
         }
+    };
 
-        function filterProjects(cat) {
-            document.querySelectorAll('.project-card').forEach(card => {
-                const categories = card.getAttribute('data-category');
-                if (cat === 'all' || categories.includes(cat)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-            ['all', 'mobile', 'ai', 'game'].forEach(c => {
-                const btn = document.getElementById('flt-' + c);
-                if (c === cat) {
-                    btn.className = "px-3.5 py-1.5 rounded-lg bg-sky-500 text-slate-950 transition-all";
-                } else {
-                    btn.className = "px-3.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white transition-all";
-                }
-            });
-        }
+    function setLang(lang) {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const k = el.getAttribute('data-i18n');
+            if (dict[lang] && dict[lang][k]) {
+                el.innerHTML = dict[lang][k];
+            }
+        });
+        ['en', 'tr', 'pl'].forEach(l => {
+            const b = document.getElementById('btn-' + l);
+            if (b) b.classList.toggle('active', l === lang);
+        });
+        localStorage.setItem('pref_lang', lang);
+    }
 
-        const savedLang = localStorage.getItem('pref_lang') || 'en';
-        setLang(savedLang);
-    </script>
+    // Keyboard shortcuts (1/2/3 for Lang, T for Theme, C for Copy Email)
+    window.addEventListener('keydown', (e) => {
+        if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+        const k = e.key.toLowerCase();
+        if (k === 't') toggleTheme();
+        else if (k === '1') setLang('en');
+        else if (k === '2') setLang('tr');
+        else if (k === '3') setLang('pl');
+        else if (k === 'c' && !e.ctrlKey && !e.metaKey) copyEmail();
+    });
+
+    // Init saved preferences
+    const savedTheme = localStorage.getItem('site_theme');
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.getElementById('theme-label').textContent = 'LIGHT [T]';
+    }
+    const savedLang = localStorage.getItem('pref_lang') || 'en';
+    setLang(savedLang);
+</script>
 </body>
 </html>
-

@@ -202,17 +202,16 @@
 
         /* Staggered reveal on load */
         .reveal {
-            opacity: 0;
-            transform: translateY(12px);
-            animation: rise 0.65s var(--ease-out) forwards;
+            animation: rise 0.45s var(--ease-out) both;
         }
-        .d-1 { animation-delay: 0.05s; }
-        .d-2 { animation-delay: 0.14s; }
-        .d-3 { animation-delay: 0.22s; }
-        .d-4 { animation-delay: 0.30s; }
+        .d-1 { animation-delay: 0.01s; }
+        .d-2 { animation-delay: 0.03s; }
+        .d-3 { animation-delay: 0.05s; }
+        .d-4 { animation-delay: 0.07s; }
 
         @keyframes rise {
-            to { opacity: 1; transform: translateY(0); }
+            from { transform: translateY(6px); }
+            to { transform: translateY(0); }
         }
 
         /* Hero section */
